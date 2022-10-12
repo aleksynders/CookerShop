@@ -15,24 +15,14 @@ using System.Windows.Shapes;
 
 namespace wpf_project
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для MainPage.xaml
+    /// </summary>
+    public partial class MainPage : Page
     {
-        public MainWindow()
+        public MainPage()
         {
             InitializeComponent();
-            BaseClass.BD = new ShopEntities();
-            FrameClass.MainFrame = fMain;
-            FrameClass.MainFrame.Navigate(new MainPage());
-        }
-
-        private void autorizate_Click(object sender, RoutedEventArgs e)
-        {
-            FrameClass.MainFrame.Navigate(new AutoPage());
-        }
-
-        private void register_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }

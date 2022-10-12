@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BlackList">
+          <Key>
+            <PropertyRef Name="entry" />
+          </Key>
+          <Property Name="entry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_user" Type="int" Nullable="false" />
+          <Property Name="date_block" Type="date" Nullable="false" />
+          <Property Name="cause" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Manufacturers">
+          <Key>
+            <PropertyRef Name="manufacturer_code" />
+          </Key>
+          <Property Name="manufacturer_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="manufacturer_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "41П_МДК01.01_Громов.dbo.PriceChange" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="PriceChange">
+          <Key>
+            <PropertyRef Name="product_code" />
+            <PropertyRef Name="old_price" />
+            <PropertyRef Name="new_price" />
+            <PropertyRef Name="ID_user" />
+            <PropertyRef Name="date_change" />
+          </Key>
+          <Property Name="product_code" Type="int" Nullable="false" />
+          <Property Name="old_price" Type="int" Nullable="false" />
+          <Property Name="new_price" Type="int" Nullable="false" />
+          <Property Name="ID_user" Type="int" Nullable="false" />
+          <Property Name="date_change" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Privilage">
+          <Key>
+            <PropertyRef Name="privilage" />
+          </Key>
+          <Property Name="privilage" Type="int" Nullable="false" />
+          <Property Name="name_privilage" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="product_code" />
+          </Key>
+          <Property Name="product_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="manufacturer_code" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="category" Type="int" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+          <Property Name="discount" Type="int" />
+          <Property Name="image_product" Type="varbinary(max)" />
+          <Property Name="rate" Type="int" />
+        </EntityType>
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="rate" />
+          </Key>
+          <Property Name="rate" Type="int" Nullable="false" />
+          <Property Name="rating" Type="float" Nullable="false" />
+          <Property Name="amount_rating" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="surname_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="gender" Type="int" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_reg" Type="date" Nullable="false" />
+          <Property Name="role" Type="int" Nullable="false" />
+          <Property Name="privilege" Type="int" />
+          <Property Name="black" Type="int" />
+        </EntityType>
+        <Association Name="FK_PriceChange_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="PriceChange" Type="Self.PriceChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="product_code" />
+            </Principal>
+            <Dependent Role="PriceChange">
+              <PropertyRef Name="product_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceChange_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="PriceChange" Type="Self.PriceChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PriceChange">
+              <PropertyRef Name="ID_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Manufacturers">
+          <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturers">
+              <PropertyRef Name="manufacturer_code" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="manufacturer_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Ratings">
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ratings">
+              <PropertyRef Name="rate" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="rate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_BlackList">
+          <End Role="BlackList" Type="Self.BlackList" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlackList">
+              <PropertyRef Name="entry" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="black" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Privilage">
+          <End Role="Privilage" Type="Self.Privilage" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Privilage">
+              <PropertyRef Name="privilage" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="privilege" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="BlackList" EntityType="Self.BlackList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Privilage" EntityType="Self.Privilage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceChange" EntityType="Self.PriceChange" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PriceChange].[product_code] AS [product_code], 
+    [PriceChange].[old_price] AS [old_price], 
+    [PriceChange].[new_price] AS [new_price], 
+    [PriceChange].[ID_user] AS [ID_user], 
+    [PriceChange].[date_change] AS [date_change]
+    FROM [dbo].[PriceChange] AS [PriceChange]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_PriceChange_Products" Association="Self.FK_PriceChange_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="PriceChange" EntitySet="PriceChange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceChange_Users" Association="Self.FK_PriceChange_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PriceChange" EntitySet="PriceChange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Manufacturers" Association="Self.FK_Products_Manufacturers">
+            <End Role="Manufacturers" EntitySet="Manufacturers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Ratings" Association="Self.FK_Products_Ratings">
+            <End Role="Ratings" EntitySet="Ratings" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_BlackList" Association="Self.FK_Users_BlackList">
+            <End Role="BlackList" EntitySet="BlackList" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Privilage" Association="Self.FK_Users_Privilage">
+            <End Role="Privilage" EntitySet="Privilage" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BlackList">
+          <Key>
+            <PropertyRef Name="entry" />
+          </Key>
+          <Property Name="entry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_user" Type="Int32" Nullable="false" />
+          <Property Name="date_block" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cause" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_BlackList" FromRole="BlackList" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Manufacturers">
+          <Key>
+            <PropertyRef Name="manufacturer_code" />
+          </Key>
+          <Property Name="manufacturer_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="manufacturer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Manufacturers" FromRole="Manufacturers" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Privilage">
+          <Key>
+            <PropertyRef Name="privilage1" />
+          </Key>
+          <Property Name="privilage1" Type="Int32" Nullable="false" />
+          <Property Name="name_privilage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Privilage" FromRole="Privilage" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="product_code" />
+          </Key>
+          <Property Name="product_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="manufacturer_code" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="category" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="discount" Type="Int32" />
+          <Property Name="image_product" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="rate" Type="Int32" />
+          <NavigationProperty Name="Manufacturers" Relationship="Self.FK_Products_Manufacturers" FromRole="Products" ToRole="Manufacturers" />
+          <NavigationProperty Name="PriceChange" Relationship="Self.FK_PriceChange_Products" FromRole="Products" ToRole="PriceChange" />
+          <NavigationProperty Name="Ratings" Relationship="Self.FK_Products_Ratings" FromRole="Products" ToRole="Ratings" />
+        </EntityType>
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="rate" />
+          </Key>
+          <Property Name="rate" Type="Int32" Nullable="false" />
+          <Property Name="rating" Type="Double" Nullable="false" />
+          <Property Name="amount_rating" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Ratings" FromRole="Ratings" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="surname_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_reg" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="role" Type="Int32" Nullable="false" />
+          <Property Name="privilege" Type="Int32" />
+          <Property Name="black" Type="Int32" />
+          <NavigationProperty Name="BlackList" Relationship="Self.FK_Users_BlackList" FromRole="Users" ToRole="BlackList" />
+          <NavigationProperty Name="Privilage" Relationship="Self.FK_Users_Privilage" FromRole="Users" ToRole="Privilage" />
+          <NavigationProperty Name="PriceChange" Relationship="Self.FK_PriceChange_Users" FromRole="Users" ToRole="PriceChange" />
+        </EntityType>
+        <EntityType Name="PriceChange">
+          <Key>
+            <PropertyRef Name="product_code" />
+            <PropertyRef Name="old_price" />
+            <PropertyRef Name="new_price" />
+            <PropertyRef Name="ID_user" />
+            <PropertyRef Name="date_change" />
+          </Key>
+          <Property Name="product_code" Type="Int32" Nullable="false" />
+          <Property Name="old_price" Type="Int32" Nullable="false" />
+          <Property Name="new_price" Type="Int32" Nullable="false" />
+          <Property Name="ID_user" Type="Int32" Nullable="false" />
+          <Property Name="date_change" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_PriceChange_Products" FromRole="PriceChange" ToRole="Products" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_PriceChange_Users" FromRole="PriceChange" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Users_BlackList">
+          <End Role="BlackList" Type="Self.BlackList" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlackList">
+              <PropertyRef Name="entry" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="black" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Manufacturers">
+          <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturers">
+              <PropertyRef Name="manufacturer_code" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="manufacturer_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Privilage">
+          <End Role="Privilage" Type="Self.Privilage" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Privilage">
+              <PropertyRef Name="privilage1" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="privilege" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceChange_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="PriceChange" Type="Self.PriceChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="product_code" />
+            </Principal>
+            <Dependent Role="PriceChange">
+              <PropertyRef Name="product_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Ratings">
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ratings">
+              <PropertyRef Name="rate" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="rate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PriceChange_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="PriceChange" Type="Self.PriceChange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PriceChange">
+              <PropertyRef Name="ID_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BlackList" EntityType="Self.BlackList" />
+          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" />
+          <EntitySet Name="Privilage" EntityType="Self.Privilage" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="Ratings" EntityType="Self.Ratings" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="PriceChange" EntityType="Self.PriceChange" />
+          <AssociationSet Name="FK_Users_BlackList" Association="Self.FK_Users_BlackList">
+            <End Role="BlackList" EntitySet="BlackList" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Manufacturers" Association="Self.FK_Products_Manufacturers">
+            <End Role="Manufacturers" EntitySet="Manufacturers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Privilage" Association="Self.FK_Users_Privilage">
+            <End Role="Privilage" EntitySet="Privilage" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceChange_Products" Association="Self.FK_PriceChange_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="PriceChange" EntitySet="PriceChange" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Ratings" Association="Self.FK_Products_Ratings">
+            <End Role="Ratings" EntitySet="Ratings" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceChange_Users" Association="Self.FK_PriceChange_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PriceChange" EntitySet="PriceChange" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="ShopEntities">
+          <EntitySetMapping Name="BlackList">
+            <EntityTypeMapping TypeName="Model.BlackList">
+              <MappingFragment StoreEntitySet="BlackList">
+                <ScalarProperty Name="entry" ColumnName="entry" />
+                <ScalarProperty Name="ID_user" ColumnName="ID_user" />
+                <ScalarProperty Name="date_block" ColumnName="date_block" />
+                <ScalarProperty Name="cause" ColumnName="cause" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manufacturers">
+            <EntityTypeMapping TypeName="Model.Manufacturers">
+              <MappingFragment StoreEntitySet="Manufacturers">
+                <ScalarProperty Name="manufacturer_code" ColumnName="manufacturer_code" />
+                <ScalarProperty Name="manufacturer_name" ColumnName="manufacturer_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Privilage">
+            <EntityTypeMapping TypeName="Model.Privilage">
+              <MappingFragment StoreEntitySet="Privilage">
+                <ScalarProperty Name="privilage1" ColumnName="privilage" />
+                <ScalarProperty Name="name_privilage" ColumnName="name_privilage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="Model.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="product_code" ColumnName="product_code" />
+                <ScalarProperty Name="manufacturer_code" ColumnName="manufacturer_code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="image_product" ColumnName="image_product" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="Model.Ratings">
+              <MappingFragment StoreEntitySet="Ratings">
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="amount_rating" ColumnName="amount_rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name_user" ColumnName="name_user" />
+                <ScalarProperty Name="surname_user" ColumnName="surname_user" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="date_reg" ColumnName="date_reg" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="privilege" ColumnName="privilege" />
+                <ScalarProperty Name="black" ColumnName="black" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceChange">
+            <EntityTypeMapping TypeName="Model.PriceChange">
+              <MappingFragment StoreEntitySet="PriceChange">
+                <ScalarProperty Name="product_code" ColumnName="product_code" />
+                <ScalarProperty Name="old_price" ColumnName="old_price" />
+                <ScalarProperty Name="new_price" ColumnName="new_price" />
+                <ScalarProperty Name="ID_user" ColumnName="ID_user" />
+                <ScalarProperty Name="date_change" ColumnName="date_change" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -15,24 +15,19 @@ using System.Windows.Shapes;
 
 namespace wpf_project
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для AutoPage.xaml
+    /// </summary>
+    public partial class AutoPage : Page
     {
-        public MainWindow()
+        public AutoPage()
         {
             InitializeComponent();
-            BaseClass.BD = new ShopEntities();
-            FrameClass.MainFrame = fMain;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             FrameClass.MainFrame.Navigate(new MainPage());
-        }
-
-        private void autorizate_Click(object sender, RoutedEventArgs e)
-        {
-            FrameClass.MainFrame.Navigate(new AutoPage());
-        }
-
-        private void register_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }

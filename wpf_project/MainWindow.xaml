@@ -5,17 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpf_project"
         mc:Ignorable="d"
-        Title="Cooker Shop" Height="300" Width="350" WindowStartupLocation="CenterScreen">
+        Title="Cooker Shop" Height="600" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Grid.Row="0" Height="100" Margin="0,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Source="Resources\pngegg.png"/>
-        <Button Content="Авторизация" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="25" Padding="10,5,10,5"/>
-        <Button Content="Регистрация" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="25" Padding="10,5,10,5"/>
+        <Image Grid.Row="0" Height="40" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40" Source="Resources\pngegg.png"/>
+        <Button x:Name="register" Content="Регистрация" Margin="0,0,200,0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="25" Padding="10,5,10,5" Click="register_Click"/>
+        <Button x:Name="autorizate" Content="Авторизация" Margin="200,0,0,0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="25" Padding="10,5,10,5" Click="autorizate_Click"/>
+        <Frame Grid.Row="1" Name="fMain" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
     
 </Window>
