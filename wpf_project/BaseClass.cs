@@ -9,6 +9,6 @@ namespace wpf_project
     internal class BaseClass
     {
 
-        public static ShopEntities BD;
+        public static CookerShopsEntities BD;
     }
 }

@@ -25,7 +25,7 @@ namespace wpf_project
         public string surname_user { get; set; }
         public Nullable<int> gender { get; set; }
         public string login { get; set; }
-        public string password { get; set; }
+        public int password { get; set; }
         public string phone { get; set; }
         public System.DateTime date_reg { get; set; }
         public int role { get; set; }

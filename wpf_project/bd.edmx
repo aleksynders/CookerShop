@@ -86,7 +86,7 @@
           <Property Name="surname_user" Type="nvarchar" MaxLength="50" />
           <Property Name="gender" Type="int" />
           <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="int" Nullable="false" />
           <Property Name="phone" Type="nvarchar" MaxLength="50" />
           <Property Name="date_reg" Type="date" Nullable="false" />
           <Property Name="role" Type="int" Nullable="false" />
@@ -284,7 +284,7 @@
           <Property Name="surname_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="gender" Type="Int32" />
           <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="Int32" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="date_reg" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="role" Type="Int32" Nullable="false" />
@@ -382,7 +382,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ShopEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CookerShopsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BlackList" EntityType="Self.BlackList" />
           <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" />
           <EntitySet Name="Privilage" EntityType="Self.Privilage" />
@@ -421,7 +421,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="ShopEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="CookerShopsEntities">
           <EntitySetMapping Name="BlackList">
             <EntityTypeMapping TypeName="Model.BlackList">
               <MappingFragment StoreEntitySet="BlackList">

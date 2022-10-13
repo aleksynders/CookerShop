@@ -13,10 +13,10 @@ namespace wpf_project
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ShopEntities : DbContext
+    public partial class CookerShopsEntities : DbContext
     {
-        public ShopEntities()
-            : base("name=ShopEntities")
+        public CookerShopsEntities()
+            : base("name=CookerShopsEntities")
         {
         }
     

@@ -24,5 +24,31 @@ namespace wpf_project
         {
             InitializeComponent();
         }
+
+        private void bRegistration_Click(object sender, RoutedEventArgs e)
+        {
+            int tempGender = 0;
+            if (rbMan.IsChecked == true)
+                tempGender = 1;
+            if (rbWoman.IsChecked == true)
+                tempGender = 2;
+            Users user = new Users()
+            {
+                name_user = tbName.Text,
+                surname_user = tbSurname.Text,
+                gender = tempGender,
+                login = tbLogin.Text,
+                password = pbPassword.Password.GetHashCode(),
+                phone = tbNumber.Text,
+                date_reg = Convert.ToDateTime(DateTime.Today),
+                role = 0,
+                privilege = null,
+                black = null
+            };
+            BaseClass.BD.Users.Add(user);
+            BaseClass.BD.SaveChanges();
+            MessageBox.Show("Вы зарегистрировались!");
+        }
+
     }
 }

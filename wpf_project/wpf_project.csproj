@@ -68,42 +68,52 @@
     <Compile Include="AutoPage.xaml.cs">
       <DependentUpon>AutoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="bd.cs">
+    <Compile Include="BaseClass.cs" />
+    <Compile Include="BD.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>bd.tt</DependentUpon>
+      <DependentUpon>BD.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD.edmx</DependentUpon>
     </Compile>
     <Compile Include="BlackList.cs">
-      <DependentUpon>bd.tt</DependentUpon>
+      <DependentUpon>BD.tt</DependentUpon>
     </Compile>
-    <Compile Include="BaseClass.cs" />
     <Compile Include="FrameClass.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Manufacturers.cs">
-      <DependentUpon>bd.tt</DependentUpon>
+      <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="PriceChange.cs">
-      <DependentUpon>bd.tt</DependentUpon>
+      <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Privilage.cs">
-      <DependentUpon>bd.tt</DependentUpon>
+      <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Products.cs">
-      <DependentUpon>bd.tt</DependentUpon>
+      <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Ratings.cs">
-      <DependentUpon>bd.tt</DependentUpon>
+      <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="RegPage.xaml.cs">
       <DependentUpon>RegPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>bd.tt</DependentUpon>
+      <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
-      <DependentUpon>bd.tt</DependentUpon>
+      <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Page Include="AutoPage.xaml">
       <SubType>Designer</SubType>
@@ -120,16 +130,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="bd.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>bd.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="bd.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>bd.edmx</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -158,12 +158,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="bd.edmx">
+    <EntityDeploy Include="BD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>bd.Designer.cs</LastGenOutput>
+      <LastGenOutput>BD.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="bd.edmx.diagram">
-      <DependentUpon>bd.edmx</DependentUpon>
+    <None Include="BD.edmx.diagram">
+      <DependentUpon>BD.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -190,19 +190,19 @@
     <Resource Include="Resources\pngegg.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bd.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>bd.Context.cs</LastGenOutput>
-      <DependentUpon>bd.edmx</DependentUpon>
-    </Content>
-    <Content Include="bd.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>bd.edmx</DependentUpon>
-      <LastGenOutput>bd.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="BD.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BD.edmx</DependentUpon>
+      <LastGenOutput>BD.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BD.edmx</DependentUpon>
+      <LastGenOutput>BD.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

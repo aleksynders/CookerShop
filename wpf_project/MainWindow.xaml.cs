@@ -20,7 +20,7 @@ namespace wpf_project
         public MainWindow()
         {
             InitializeComponent();
-            BaseClass.BD = new ShopEntities();
+            BaseClass.BD = new CookerShopsEntities();
             FrameClass.MainFrame = fMain;
             FrameClass.MainFrame.Navigate(new MainPage());
         }
@@ -32,7 +32,7 @@ namespace wpf_project
 
         private void register_Click(object sender, RoutedEventArgs e)
         {
-            
+            FrameClass.MainFrame.Navigate(new RegPage());
         }
     }
 }
