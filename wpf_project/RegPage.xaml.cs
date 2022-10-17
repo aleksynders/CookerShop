@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,6 +37,8 @@ namespace wpf_project
             else if (tbNumber.Text.Length != 11) MessageBox.Show("Проверьте правильность введенного номера телефона!\nПримеры правильного формата:\n  • 79101426789\n  • 89101426789", "", MessageBoxButton.OK, MessageBoxImage.Error);
             else
             {
+                string checkPassword = pbPassword.Password;
+
                 int tempGender = 0;
                 if (rbMan.IsChecked == true)
                     tempGender = 1;
@@ -65,6 +68,15 @@ namespace wpf_project
         private void BackMain_Click(object sender, RoutedEventArgs e)
         {
             FrameClass.MainFrame.Navigate(new MainPage());
+        }
+        static bool CheckPass(string pass)
+        {
+            bool otv;
+            var regexSpecSim = new Regex(@"([!,@,#,$,%,^,&,*,?,_,~])");
+            if (pass.Length < 8) otv = false;
+            else if (!regexSpecSim.IsMatch(pass)) otv = false;
+            else otv = true;
+            return otv;
         }
     }
 }

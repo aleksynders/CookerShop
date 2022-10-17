@@ -14,7 +14,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top">Регистрация</TextBlock>
-        <Button x:Name="BackMain" Grid.Row="0" Margin="0,0,20,0" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Вернуться на главную" FontSize="20" FontFamily="Roboto" FontWeight="DemiBold" Click="BackMain_Click"></Button>
+        <Button x:Name="BackMain" Style="{DynamicResource MainButtonStyle}" Grid.Row="0" Margin="0,0,20,0" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Вернуться на главную" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Click="BackMain_Click" Padding="2"></Button>
         <StackPanel Grid.Row="1">
             <GroupBox Header="Введите имя">
                 <TextBox Name="tbName" MaxLength="35"></TextBox>
@@ -37,7 +37,7 @@
                     <RadioButton Name="rbWoman">Женский</RadioButton>
                 </StackPanel>
             </GroupBox>
-            <Button Name="bRegistration" HorizontalAlignment="Center" Margin="0,10,0,0" Padding="5" Click="bRegistration_Click">Зарегистрироваться</Button>
+            <Button Name="bRegistration" HorizontalAlignment="Center" Margin="0,10,0,0" Padding="5" Click="bRegistration_Click" Style="{DynamicResource AcceptButtonStyle}">Зарегистрироваться</Button>
         </StackPanel>
     </Grid>
 </Page>

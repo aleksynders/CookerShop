@@ -10,12 +10,11 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Image Grid.Row="0" Height="40" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40" Source="Resources\pngegg.png"/>
-        <Button x:Name="register" Content="Регистрация" Margin="0,0,200,0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="22" Padding="10,5,10,5" Click="register_Click"/>
-        <Button x:Name="autorizate" Content="Авторизация" Margin="200,0,0,0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="22" Padding="10,5,10,5" Click="autorizate_Click"/>
-
+        <Button x:Name="register" Style="{DynamicResource MainButtonStyle}" Padding="5, 4, 5, 4" Content="Регистрация" Margin="0,0,20,0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Click="register_Click"/>
+        <Button x:Name="autorizate" Style="{DynamicResource MainButtonStyle}" Padding="5, 4, 5, 4" Content="Авторизация" Margin="0,0,150,0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Click="autorizate_Click"/>
     </Grid>
 </Page>
