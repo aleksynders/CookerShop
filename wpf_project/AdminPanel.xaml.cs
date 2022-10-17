@@ -16,22 +16,14 @@ using System.Windows.Shapes;
 namespace wpf_project
 {
     /// <summary>
-    /// Логика взаимодействия для MainPage.xaml
+    /// Логика взаимодействия для AdminPanel.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class AdminPanel : Page
     {
-        public MainPage()
+        public AdminPanel()
         {
             InitializeComponent();
-        }
-        private void autorizate_Click(object sender, RoutedEventArgs e)
-        {
-            FrameClass.MainFrame.Navigate(new AutoPage());
-        }
-
-        private void register_Click(object sender, RoutedEventArgs e)
-        {
-            FrameClass.MainFrame.Navigate(new RegPage());
+            LoginUserAutorizate.Content = "Учётная запись: " + FrameClass.loginAutorizate;
         }
     }
 }

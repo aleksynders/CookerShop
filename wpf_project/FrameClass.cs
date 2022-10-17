@@ -10,5 +10,6 @@ namespace wpf_project
     internal class FrameClass
     {
         public static Frame MainFrame;
+        public static string loginAutorizate;
     }
 }

@@ -27,28 +27,44 @@ namespace wpf_project
 
         private void bRegistration_Click(object sender, RoutedEventArgs e)
         {
-            int tempGender = 0;
-            if (rbMan.IsChecked == true)
-                tempGender = 1;
-            if (rbWoman.IsChecked == true)
-                tempGender = 2;
-            Users user = new Users()
+            if (tbName.Text == "") MessageBox.Show("Заполните поле имени!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (tbSurname.Text == "") MessageBox.Show("Заполните поле фамилии!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (tbNumber.Text == "") MessageBox.Show("Заполните поле номера телефона!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (tbLogin.Text == "") MessageBox.Show("Заполните поле логина!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (pbPassword.Password == "") MessageBox.Show("Заполните поле пароля!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (rbMan.IsChecked != true && rbWoman.IsChecked != true) MessageBox.Show("Убедитесь, что Вы выбрали пол!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (tbNumber.Text.Length != 11) MessageBox.Show("Проверьте правильность введенного номера телефона!\nПримеры правильного формата:\n  • 79101426789\n  • 89101426789", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
             {
-                name_user = tbName.Text,
-                surname_user = tbSurname.Text,
-                gender = tempGender,
-                login = tbLogin.Text,
-                password = pbPassword.Password.GetHashCode(),
-                phone = tbNumber.Text,
-                date_reg = Convert.ToDateTime(DateTime.Today),
-                role = 0,
-                privilege = null,
-                black = null
-            };
-            BaseClass.BD.Users.Add(user);
-            BaseClass.BD.SaveChanges();
-            MessageBox.Show("Вы зарегистрировались!");
+                int tempGender = 0;
+                if (rbMan.IsChecked == true)
+                    tempGender = 1;
+                if (rbWoman.IsChecked == true)
+                    tempGender = 2;
+                Users user = new Users()
+                {
+                    name_user = tbName.Text,
+                    surname_user = tbSurname.Text,
+                    gender = tempGender,
+                    login = tbLogin.Text,
+                    password = pbPassword.Password.GetHashCode(),
+                    phone = tbNumber.Text,
+                    date_reg = Convert.ToDateTime(DateTime.Today),
+                    role = 0,
+                    privilege = null,
+                    black = null
+                };
+                BaseClass.BD.Users.Add(user);
+                BaseClass.BD.SaveChanges();
+                MessageBox.Show("Вы зарегистрировались!");
+                FrameClass.MainFrame.Navigate(new AutoPage());
+            }
+
         }
 
+        private void BackMain_Click(object sender, RoutedEventArgs e)
+        {
+            FrameClass.MainFrame.Navigate(new MainPage());
+        }
     }
 }

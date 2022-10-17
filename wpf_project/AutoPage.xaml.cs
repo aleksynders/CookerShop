@@ -29,5 +29,41 @@ namespace wpf_project
         {
             FrameClass.MainFrame.Navigate(new MainPage());
         }
+
+        private void bRegistration_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbLogin.Text == "") MessageBox.Show("Заполните поле логина!", "", MessageBoxButton.OK, MessageBoxImage.Error); // Проверка на заполнение Логина
+            else if (pbPassword.Password == "") MessageBox.Show("Заполните поле логина!", "", MessageBoxButton.OK, MessageBoxImage.Error); // Проверка на заполнение Пароля
+            else
+            {
+                int pass = pbPassword.Password.GetHashCode();
+                Users searchUser = BaseClass.BD.Users.FirstOrDefault(x => x.login == tbLogin.Text); 
+                if (searchUser == null) MessageBox.Show("Такого пользователя не существует!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                {
+                    Users autoUser = BaseClass.BD.Users.FirstOrDefault(x => x.login == tbLogin.Text && x.password == pass);
+                    if (autoUser == null)
+                    {
+                        MessageBox.Show("Неправильно введён пароль!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        switch (autoUser.role)
+                        {
+                            // Обычный пользователь (0)
+                            case 0:
+
+                                break;
+                            // Администратор (1)
+                            case 1:
+                                FrameClass.loginAutorizate = tbLogin.Text;
+                                FrameClass.MainFrame.Navigate(new AdminPanel());
+                                break;
+                            default: MessageBox.Show("Произошла неизвестная ошибка!\nПерезайдите в приложение!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); break;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

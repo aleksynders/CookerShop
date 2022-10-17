@@ -24,15 +24,5 @@ namespace wpf_project
             FrameClass.MainFrame = fMain;
             FrameClass.MainFrame.Navigate(new MainPage());
         }
-
-        private void autorizate_Click(object sender, RoutedEventArgs e)
-        {
-            FrameClass.MainFrame.Navigate(new AutoPage());
-        }
-
-        private void register_Click(object sender, RoutedEventArgs e)
-        {
-            FrameClass.MainFrame.Navigate(new RegPage());
-        }
     }
 }

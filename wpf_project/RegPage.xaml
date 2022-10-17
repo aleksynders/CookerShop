@@ -9,21 +9,27 @@
       Title="RegPage" FontFamily="Roboto" FontSize="18">
 
     <Grid>
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top">Регистрация</TextBlock>
+        <Button x:Name="BackMain" Grid.Row="0" Margin="0,0,20,0" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Вернуться на главную" FontSize="20" FontFamily="Roboto" FontWeight="DemiBold" Click="BackMain_Click"></Button>
+        <StackPanel Grid.Row="1">
             <GroupBox Header="Введите имя">
-                <TextBox Name="tbName"></TextBox>
+                <TextBox Name="tbName" MaxLength="35"></TextBox>
             </GroupBox>
             <GroupBox Header="Введите фамилию">
-                <TextBox Name="tbSurname"></TextBox>
+                <TextBox Name="tbSurname" MaxLength="40"></TextBox>
             </GroupBox>
             <GroupBox Header="Введите номер телефона">
                 <TextBox Name="tbNumber" MaxLength="11"></TextBox>
             </GroupBox>
             <GroupBox Header="Введите логин">
-                <TextBox Name="tbLogin"></TextBox>
+                <TextBox Name="tbLogin" MaxLength="25"></TextBox>
             </GroupBox>
             <GroupBox Header="Введите пароль">
-                <PasswordBox Name="pbPassword"></PasswordBox>
+                <PasswordBox Name="pbPassword" MaxLength="40"></PasswordBox>
             </GroupBox>
             <GroupBox Header="Выберите пол">
                 <StackPanel>
