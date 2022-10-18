@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="370"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top">Пользователи</TextBlock>
         <Button x:Name="BackMain" Style="{DynamicResource MainButtonStyle}" Grid.Row="0" Margin="0,0,20,0" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Вернуться назад" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Click="BackMain_Click" Padding="2"></Button>
@@ -28,5 +28,24 @@
                 <DataGridTextColumn Header="Роль" Binding="{Binding Roles.name_role}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <WrapPanel Grid.Row="2">
+            <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0">
+                <TextBox x:Name="Search" Width="150" Height="25" VerticalContentAlignment="Center" TextChanged="Search_TextChanged"></TextBox>
+                <ComboBox x:Name="typeSearch" Height="25" Width="100" VerticalContentAlignment="Center" Margin="15 0 0 0">
+                    <Label Content="Имя" FontFamily="Roboto" FontSize="16"/>
+                    <Label Content="Фамилия" FontFamily="Roboto" FontSize="16"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Width="150" VerticalAlignment="Center" Margin="15 0 0 0">
+                <TextBlock Text="Фильтрация по полу" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="14"></TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <CheckBox Name="rbMan" Content="Мужской" FontFamily="Roboto" Checked="rbMan_Checked"></CheckBox>
+                    <CheckBox Name="rbWoman" Content="Женский" FontFamily="Roboto" Margin="10 0 0 0" Checked="rbWoman_Checked"></CheckBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Height="25" Width="70" Margin=" 15 0 0 0">
+                <Button Name="ButtonRefresh" Content="Сброс" Height="25" Width="70" HorizontalAlignment="Right" Click="ButtonRefresh_Click"></Button>
+            </StackPanel>
+        </WrapPanel>
     </Grid>
 </Page>

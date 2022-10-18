@@ -24,11 +24,42 @@ namespace wpf_project
         {
             InitializeComponent();
             dgUser.ItemsSource = BaseClass.BD.Users.ToList();
+            typeSearch.SelectedIndex = 0;
         }
 
         private void BackMain_Click(object sender, RoutedEventArgs e)
         {
             FrameClass.MainFrame.Navigate(new AdminPanel());
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            if (typeSearch.SelectedIndex == 0)
+            {
+                dgUser.ItemsSource = BaseClass.BD.Users.ToList().Where((x => x.name_user == Search.Text));
+            }
+        }
+
+        private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            rbWoman.IsChecked = false;
+            rbMan.IsChecked = false;
+            Search.Clear();
+            typeSearch.SelectedIndex = 0;
+            dgUser.ItemsSource = BaseClass.BD.Users.ToList();
+        }
+
+        private void rbMan_Checked(object sender, RoutedEventArgs e)
+        {
+            rbWoman.IsChecked = false;
+            dgUser.ItemsSource = BaseClass.BD.Users.ToList().Where((x => x.gender == 1));
+        }
+
+        private void rbWoman_Checked(object sender, RoutedEventArgs e)
+        {
+            rbMan.IsChecked = false;
+            dgUser.ItemsSource = BaseClass.BD.Users.ToList().Where((x => x.gender == 2));
         }
     }
 }

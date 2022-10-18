@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpf_project"
         mc:Ignorable="d"
-        Title="Cooker Shop" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Cooker Shop" Height="490" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
- <Frame Grid.Row="1" Name="fMain" NavigationUIVisibility="Hidden"></Frame>
+ <Frame Grid.Row="0" Name="fMain" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
     
 </Window>
