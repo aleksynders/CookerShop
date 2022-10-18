@@ -20,7 +20,7 @@ namespace wpf_project
         public MainWindow()
         {
             InitializeComponent();
-            BaseClass.BD = new CookerShopsEntities();
+            BaseClass.BD = new CookersShopEntities();
             FrameClass.MainFrame = fMain;
             FrameClass.MainFrame.Navigate(new MainPage());
         }

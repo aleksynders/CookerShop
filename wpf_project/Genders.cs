@@ -12,29 +12,18 @@ namespace wpf_project
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Genders
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public Genders()
         {
-            this.PriceChange = new HashSet<PriceChange>();
+            this.Users = new HashSet<Users>();
         }
     
-        public int ID { get; set; }
-        public string name_user { get; set; }
-        public string surname_user { get; set; }
-        public int gender { get; set; }
-        public string login { get; set; }
-        public int password { get; set; }
-        public string phone { get; set; }
-        public System.DateTime date_reg { get; set; }
-        public int role { get; set; }
-        public Nullable<int> privilege { get; set; }
+        public int id_gender { get; set; }
+        public string name_gender { get; set; }
     
-        public virtual Genders Genders { get; set; }
-        public virtual Privilage Privilage { get; set; }
-        public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PriceChange> PriceChange { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

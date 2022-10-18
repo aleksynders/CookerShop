@@ -38,29 +38,35 @@ namespace wpf_project
             else
             {
                 string checkPassword = pbPassword.Password;
-
-                int tempGender = 0;
-                if (rbMan.IsChecked == true)
-                    tempGender = 1;
-                if (rbWoman.IsChecked == true)
-                    tempGender = 2;
-                Users user = new Users()
+                Users searchUser = BaseClass.BD.Users.FirstOrDefault(x => x.login == tbLogin.Text);
+                if (searchUser != null) MessageBox.Show("Такой пользователь уже существует!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                else if (CheckPass(checkPassword) == false)
+                    MessageBox.Show("Ваш пароль очень простой!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
                 {
-                    name_user = tbName.Text,
-                    surname_user = tbSurname.Text,
-                    gender = tempGender,
-                    login = tbLogin.Text,
-                    password = pbPassword.Password.GetHashCode(),
-                    phone = tbNumber.Text,
-                    date_reg = Convert.ToDateTime(DateTime.Today),
-                    role = 0,
-                    privilege = null,
-                    black = null
-                };
-                BaseClass.BD.Users.Add(user);
-                BaseClass.BD.SaveChanges();
-                MessageBox.Show("Вы зарегистрировались!");
-                FrameClass.MainFrame.Navigate(new AutoPage());
+                    int tempGender = 0;
+                    if (rbMan.IsChecked == true)
+                        tempGender = 1;
+                    if (rbWoman.IsChecked == true)
+                        tempGender = 2;
+                    Users user = new Users()
+                    {
+                        name_user = tbName.Text,
+                        surname_user = tbSurname.Text,
+                        gender = tempGender,
+                        login = tbLogin.Text,
+                        password = pbPassword.Password.GetHashCode(),
+                        phone = tbNumber.Text,
+                        date_reg = Convert.ToDateTime(DateTime.Today),
+                        role = 0,
+                        privilege = null
+                    };
+                    BaseClass.BD.Users.Add(user);
+                    BaseClass.BD.SaveChanges();
+                    MessageBox.Show("Вы зарегистрировались!");
+                    FrameClass.MainFrame.Navigate(new AutoPage());
+                }
+
             }
 
         }
@@ -72,9 +78,14 @@ namespace wpf_project
         static bool CheckPass(string pass)
         {
             bool otv;
+            var regexTwoNum = new Regex(@"(\d.*\d)");
             var regexSpecSim = new Regex(@"([!,@,#,$,%,^,&,*,?,_,~])");
+            var regexStrochLat = new Regex(@"([a-z].*[a-z].*[a-z])");
+            var regexZaglavLat = new Regex(@"([A-Z])");
             if (pass.Length < 8) otv = false;
             else if (!regexSpecSim.IsMatch(pass)) otv = false;
+            else if (!regexTwoNum.IsMatch(pass)) otv = false;
+            else if (!regexZaglavLat.IsMatch(pass)) otv = false;
             else otv = true;
             return otv;
         }

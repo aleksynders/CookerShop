@@ -13,10 +13,10 @@ namespace wpf_project
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CookerShopsEntities : DbContext
+    public partial class CookersShopEntities : DbContext
     {
-        public CookerShopsEntities()
-            : base("name=CookerShopsEntities")
+        public CookersShopEntities()
+            : base("name=CookersShopEntities")
         {
         }
     
@@ -25,11 +25,12 @@ namespace wpf_project
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BlackList> BlackList { get; set; }
+        public virtual DbSet<Genders> Genders { get; set; }
         public virtual DbSet<Manufacturers> Manufacturers { get; set; }
         public virtual DbSet<Privilage> Privilage { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Ratings> Ratings { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<PriceChange> PriceChange { get; set; }

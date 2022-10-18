@@ -5,14 +5,12 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="BlackList">
+        <EntityType Name="Genders">
           <Key>
-            <PropertyRef Name="entry" />
+            <PropertyRef Name="id_gender" />
           </Key>
-          <Property Name="entry" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_user" Type="int" Nullable="false" />
-          <Property Name="date_block" Type="date" Nullable="false" />
-          <Property Name="cause" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_gender" Type="int" Nullable="false" />
+          <Property Name="name_gender" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Manufacturers">
           <Key>
@@ -67,6 +65,13 @@
           <Property Name="rating" Type="float" Nullable="false" />
           <Property Name="amount_rating" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" Nullable="false" />
+          <Property Name="name_role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -84,14 +89,13 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name_user" Type="nvarchar" MaxLength="50" />
           <Property Name="surname_user" Type="nvarchar" MaxLength="50" />
-          <Property Name="gender" Type="int" />
+          <Property Name="gender" Type="int" Nullable="false" />
           <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="int" Nullable="false" />
           <Property Name="phone" Type="nvarchar" MaxLength="50" />
           <Property Name="date_reg" Type="date" Nullable="false" />
           <Property Name="role" Type="int" Nullable="false" />
           <Property Name="privilege" Type="int" />
-          <Property Name="black" Type="int" />
         </EntityType>
         <Association Name="FK_PriceChange_Products">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
@@ -141,15 +145,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Users_BlackList">
-          <End Role="BlackList" Type="Self.BlackList" Multiplicity="0..1" />
+        <Association Name="FK_Users_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BlackList">
-              <PropertyRef Name="entry" />
+            <Principal Role="Genders">
+              <PropertyRef Name="id_gender" />
             </Principal>
             <Dependent Role="Users">
-              <PropertyRef Name="black" />
+              <PropertyRef Name="gender" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -165,12 +169,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Users_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище ModelContainer">
-          <EntitySet Name="BlackList" EntityType="Self.BlackList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Privilage" EntityType="Self.Privilage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PriceChange" EntityType="Self.PriceChange" store:Type="Tables" store:Schema="dbo">
@@ -198,12 +215,16 @@
             <End Role="Ratings" EntitySet="Ratings" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK_Users_BlackList" Association="Self.FK_Users_BlackList">
-            <End Role="BlackList" EntitySet="BlackList" />
+          <AssociationSet Name="FK_Users_Genders" Association="Self.FK_Users_Genders">
+            <End Role="Genders" EntitySet="Genders" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Privilage" Association="Self.FK_Users_Privilage">
             <End Role="Privilage" EntitySet="Privilage" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
@@ -212,15 +233,13 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="BlackList">
+        <EntityType Name="Genders">
           <Key>
-            <PropertyRef Name="entry" />
+            <PropertyRef Name="id_gender" />
           </Key>
-          <Property Name="entry" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_user" Type="Int32" Nullable="false" />
-          <Property Name="date_block" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="cause" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Users_BlackList" FromRole="BlackList" ToRole="Users" />
+          <Property Name="id_gender" Type="Int32" Nullable="false" />
+          <Property Name="name_gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Genders" FromRole="Genders" ToRole="Users" />
         </EntityType>
         <EntityType Name="Manufacturers">
           <Key>
@@ -265,6 +284,14 @@
           <Property Name="amount_rating" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Products_Ratings" FromRole="Ratings" ToRole="Products" />
         </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <Property Name="name_role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -282,16 +309,16 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="surname_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="gender" Type="Int32" />
+          <Property Name="gender" Type="Int32" Nullable="false" />
           <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="Int32" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="date_reg" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="role" Type="Int32" Nullable="false" />
           <Property Name="privilege" Type="Int32" />
-          <Property Name="black" Type="Int32" />
-          <NavigationProperty Name="BlackList" Relationship="Self.FK_Users_BlackList" FromRole="Users" ToRole="BlackList" />
+          <NavigationProperty Name="Genders" Relationship="Self.FK_Users_Genders" FromRole="Users" ToRole="Genders" />
           <NavigationProperty Name="Privilage" Relationship="Self.FK_Users_Privilage" FromRole="Users" ToRole="Privilage" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
           <NavigationProperty Name="PriceChange" Relationship="Self.FK_PriceChange_Users" FromRole="Users" ToRole="PriceChange" />
         </EntityType>
         <EntityType Name="PriceChange">
@@ -310,15 +337,15 @@
           <NavigationProperty Name="Products" Relationship="Self.FK_PriceChange_Products" FromRole="PriceChange" ToRole="Products" />
           <NavigationProperty Name="Users" Relationship="Self.FK_PriceChange_Users" FromRole="PriceChange" ToRole="Users" />
         </EntityType>
-        <Association Name="FK_Users_BlackList">
-          <End Role="BlackList" Type="Self.BlackList" Multiplicity="0..1" />
+        <Association Name="FK_Users_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BlackList">
-              <PropertyRef Name="entry" />
+            <Principal Role="Genders">
+              <PropertyRef Name="id_gender" />
             </Principal>
             <Dependent Role="Users">
-              <PropertyRef Name="black" />
+              <PropertyRef Name="gender" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -370,6 +397,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Users_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PriceChange_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="PriceChange" Type="Self.PriceChange" Multiplicity="*" />
@@ -382,17 +421,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CookerShopsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BlackList" EntityType="Self.BlackList" />
+        <EntityContainer Name="CookersShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Genders" EntityType="Self.Genders" />
           <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" />
           <EntitySet Name="Privilage" EntityType="Self.Privilage" />
           <EntitySet Name="Products" EntityType="Self.Products" />
           <EntitySet Name="Ratings" EntityType="Self.Ratings" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="PriceChange" EntityType="Self.PriceChange" />
-          <AssociationSet Name="FK_Users_BlackList" Association="Self.FK_Users_BlackList">
-            <End Role="BlackList" EntitySet="BlackList" />
+          <AssociationSet Name="FK_Users_Genders" Association="Self.FK_Users_Genders">
+            <End Role="Genders" EntitySet="Genders" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Products_Manufacturers" Association="Self.FK_Products_Manufacturers">
@@ -411,6 +451,10 @@
             <End Role="Ratings" EntitySet="Ratings" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
           <AssociationSet Name="FK_PriceChange_Users" Association="Self.FK_PriceChange_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="PriceChange" EntitySet="PriceChange" />
@@ -421,14 +465,12 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="CookerShopsEntities">
-          <EntitySetMapping Name="BlackList">
-            <EntityTypeMapping TypeName="Model.BlackList">
-              <MappingFragment StoreEntitySet="BlackList">
-                <ScalarProperty Name="entry" ColumnName="entry" />
-                <ScalarProperty Name="ID_user" ColumnName="ID_user" />
-                <ScalarProperty Name="date_block" ColumnName="date_block" />
-                <ScalarProperty Name="cause" ColumnName="cause" />
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="CookersShopEntities">
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="Model.Genders">
+              <MappingFragment StoreEntitySet="Genders">
+                <ScalarProperty Name="id_gender" ColumnName="id_gender" />
+                <ScalarProperty Name="name_gender" ColumnName="name_gender" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -473,6 +515,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Model.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="name_role" ColumnName="name_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -497,7 +547,6 @@
                 <ScalarProperty Name="date_reg" ColumnName="date_reg" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="privilege" ColumnName="privilege" />
-                <ScalarProperty Name="black" ColumnName="black" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -16,20 +16,19 @@ using System.Windows.Shapes;
 namespace wpf_project
 {
     /// <summary>
-    /// Логика взаимодействия для AdminPanel.xaml
+    /// Логика взаимодействия для aListUser.xaml
     /// </summary>
-    public partial class AdminPanel : Page
+    public partial class aListUser : Page
     {
-        public AdminPanel()
+        public aListUser()
         {
             InitializeComponent();
-            LoginUserAutorizate.Content = "Учётная запись: " + FrameClass.loginAutorizate;
-            
+            dgUser.ItemsSource = BaseClass.BD.Users.ToList();
         }
 
-        private void ListUser_Click(object sender, RoutedEventArgs e)
+        private void BackMain_Click(object sender, RoutedEventArgs e)
         {
-            FrameClass.MainFrame.Navigate(new aListUser());
+            FrameClass.MainFrame.Navigate(new AdminPanel());
         }
     }
 }

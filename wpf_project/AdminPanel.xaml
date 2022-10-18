@@ -25,6 +25,6 @@
         </Grid.ColumnDefinitions>
         <TextBlock FontFamily="Roboto" FontSize="14" Margin="5,0,0,0" Grid.Column="0" Grid.Row="0" FontWeight="Bold">Админ панель</TextBlock>
         <Label Name="LoginUserAutorizate" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"></Label>
-        <Button Grid.Column="1" Grid.Row="1" FontFamily="Roboto" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5,5,5,5">Список пользователей</Button>
+        <Button x:Name="ListUser" Style="{DynamicResource AcceptButtonStyle}" Grid.Column="1" Grid.Row="1" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5,3,5,3" Click="ListUser_Click">Список пользователей</Button>
     </Grid>
 </Page>

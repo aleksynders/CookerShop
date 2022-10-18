@@ -12,18 +12,16 @@ namespace wpf_project
     using System;
     using System.Collections.Generic;
     
-    public partial class BlackList
+    public partial class Roles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BlackList()
+        public Roles()
         {
             this.Users = new HashSet<Users>();
         }
     
-        public int entry { get; set; }
-        public int ID_user { get; set; }
-        public System.DateTime date_block { get; set; }
-        public string cause { get; set; }
+        public int id_role { get; set; }
+        public string name_role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
