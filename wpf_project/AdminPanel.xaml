@@ -9,22 +9,24 @@
       Title="AdminPanel">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="18"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"></ColumnDefinition>
             <ColumnDefinition Width="400"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock FontFamily="Roboto" FontSize="14" Margin="5,0,0,0" Grid.Column="0" Grid.Row="0" FontWeight="Bold">Админ панель</TextBlock>
-        <Label Name="LoginUserAutorizate" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"></Label>
-        <Button x:Name="ListUser" Style="{DynamicResource AcceptButtonStyle}" Grid.Column="1" Grid.Row="1" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5,3,5,3" Click="ListUser_Click">Список пользователей</Button>
-    </Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel>
+                <TextBlock FontFamily="Roboto" FontSize="14" Margin="5,0,0,0" Grid.Column="0" FontWeight="Bold">Админ панель</TextBlock>
+            </StackPanel>
+            <StackPanel Margin="10">
+                <Image Source="Resources\icons8-admin-100.png" Height="120"></Image>
+                <Label Name="LoginUserAutorizate" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" FontWeight="Medium"></Label>
+                <Button x:Name="ExitUser" Style="{DynamicResource ExitButtonStyle}" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="9,1,9,1" Click="ExitUser_Click">Выйти</Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="10">
+            <Button x:Name="ListUser" Style="{DynamicResource AcceptButtonStyle}" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5,3,5,3" Click="ListUser_Click">Список пользователей</Button>
+
+        </StackPanel>
+ </Grid>
 </Page>

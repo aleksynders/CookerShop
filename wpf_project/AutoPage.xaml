@@ -13,13 +13,13 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top">Авторизация</TextBlock>
         <Button Grid.Row="0" Style="{DynamicResource MainButtonStyle}" Margin="0,0,20,0" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Вернуться на главную" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Click="Button_Click" Padding="2"></Button>
-        <StackPanel Grid.Row="1">
-            <GroupBox Header="Введите логин">
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 -40 0 0">
+            <TextBlock FontSize="48" FontFamily="Roboto" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="UltraBold">Авторизация</TextBlock>
+            <GroupBox Header="Введите логин" Width="270">
                 <TextBox Name="tbLogin" MaxLength="25"></TextBox>
             </GroupBox>
-            <GroupBox Header="Введите пароль">
+            <GroupBox Header="Введите пароль" Width="270">
                 <PasswordBox Name="pbPassword" MaxLength="40"></PasswordBox>
             </GroupBox>
             <Button Style="{DynamicResource AcceptButtonStyle}" Margin="0,10,0,0" Padding="7 3 7 3" HorizontalAlignment="Center" VerticalAlignment="Center" Name="bRegistration" Content="Авторизоваться" Click="bRegistration_Click"></Button>

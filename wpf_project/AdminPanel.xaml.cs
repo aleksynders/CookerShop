@@ -31,5 +31,11 @@ namespace wpf_project
         {
             FrameClass.MainFrame.Navigate(new aListUser());
         }
+
+        private void ExitUser_Click(object sender, RoutedEventArgs e)
+        {
+            FrameClass.loginAutorizate = null;
+            FrameClass.MainFrame.Navigate(new MainPage());
+        }
     }
 }

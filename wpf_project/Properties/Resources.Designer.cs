@@ -63,9 +63,29 @@ namespace wpf_project.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pngegg {
+        internal static System.Drawing.Bitmap iconmonstr_school_18_48 {
             get {
-                object obj = ResourceManager.GetObject("pngegg", resourceCulture);
+                object obj = ResourceManager.GetObject("iconmonstr_school_18_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_admin_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_admin_100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap laptop {
+            get {
+                object obj = ResourceManager.GetObject("laptop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

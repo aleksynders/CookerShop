@@ -13,8 +13,15 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Image Grid.Row="0" Height="40" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40" Source="Resources\pngegg.png"/>
-        <Button x:Name="register" Style="{DynamicResource MainButtonStyle}" Padding="5, 2, 5, 2" Content="Регистрация" Margin="0,0,20,0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Click="register_Click"/>
+        <StackPanel Orientation="Horizontal">
+            <Image Grid.Row="0" Height="40" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40" Source="Resources\iconmonstr-school-18-48.png"/>
+            <TextBlock Text="TechnicalHome" Margin="15 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Roboto" FontSize="28" FontWeight="UltraBold"></TextBlock>
+        </StackPanel>
+         <Button x:Name="register" Style="{DynamicResource MainButtonStyle}" Padding="5, 2, 5, 2" Content="Регистрация" Margin="0,0,20,0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Click="register_Click"/>
         <Button x:Name="autorizate" Style="{DynamicResource MainButtonStyle}" Padding="5, 2, 5, 2" Content="Авторизация" Margin="0,0,150,0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Click="autorizate_Click"/>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="Resources\laptop.png" Height="100" Width="100"></Image>
+            <TextBlock Height="auto" Width="500" Text="TechnicalHome – один из популярных и востребованных магазинов техники в России. На данный момент насчитывается более 473-х магазинов на территории Российской Федерации. Ежедневно мы осуществляем продажу более 2100 позиций техники" FontFamily="Roboto" FontSize="18" FontWeight="DemiBold" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+            </StackPanel>
     </Grid>
 </Page>

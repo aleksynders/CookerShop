@@ -109,6 +109,11 @@
     <Compile Include="Products.cs">
       <DependentUpon>BaDa.tt</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Ratings.cs">
       <DependentUpon>BaDa.tt</DependentUpon>
     </Compile>
@@ -161,11 +166,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -174,6 +174,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EntityDeploy Include="BaDa.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -204,9 +205,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\pngegg.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +218,9 @@
       <DependentUpon>BaDa.edmx</DependentUpon>
       <LastGenOutput>BaDa.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\icons8-admin-100.png" />
+    <Resource Include="Resources\laptop.png" />
+    <Resource Include="Resources\iconmonstr-school-18-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
