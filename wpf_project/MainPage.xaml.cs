@@ -24,7 +24,7 @@ namespace wpf_project
         {
             InitializeComponent();
         }
-        private void autorizate_Click(object sender, RoutedEventArgs e)
+        private void autorizate_Click(object sender, RoutedEventArgs e) // Login: admin Password: admin
         {
             FrameClass.MainFrame.Navigate(new AutoPage());
         }

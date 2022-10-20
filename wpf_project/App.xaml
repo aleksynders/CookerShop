@@ -14,7 +14,7 @@
         <Style x:Key="AcceptButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="{DynamicResource PrimaryBlueColor}"></Setter>
             <Setter Property="Foreground" Value="{DynamicResource PrimaryTextColor}"></Setter>
-            <Setter Property="FontWeight" Value="ExtraBold"></Setter>
+            <Setter Property="FontWeight" Value="SemiBold"></Setter>
             <Setter Property="Padding" Value="12 6 12 6"></Setter>
             <Setter Property="BorderThickness" Value="0"></Setter>
             <Setter Property="MaxHeight" Value="70"></Setter>

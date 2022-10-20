@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpf_project"
         mc:Ignorable="d"
-        Title="Cooker Shop" Height="490" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Cooker Shop" Height="490" Width="800" WindowStartupLocation="CenterScreen" MaxHeight="490" MinHeight="490" MaxWidth="800" MinWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             

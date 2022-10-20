@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:wpf_project"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="aListUser">
+      Title="aListUser" FontFamily="Roboto">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,37 +14,48 @@
             <RowDefinition Height="370"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top">Пользователи</TextBlock>
+        <TextBlock Grid.Row="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Roboto" FontWeight="Bold">Пользователи</TextBlock>
         <Button x:Name="BackMain" Style="{DynamicResource MainButtonStyle}" Grid.Row="0" Margin="0,0,20,0" VerticalAlignment="Top" HorizontalAlignment="Right" Content="Вернуться назад" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Click="BackMain_Click" Padding="2"></Button>
-        <DataGrid Name="dgUser" Grid.Row="1" Margin="10,2,10,2" AutoGenerateColumns="False" CanUserAddRows="False" GridLinesVisibility="Horizontal" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserReorderColumns="False" IsReadOnly="True" HorizontalAlignment="Left">
+        <DataGrid Name="dgUser" Grid.Row="1" Margin="10,2,10,2" AutoGenerateColumns="False" CanUserAddRows="False" GridLinesVisibility="Horizontal" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserReorderColumns="False" IsReadOnly="True" HorizontalAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Логин" Binding="{Binding login}" Width="auto"></DataGridTextColumn>
                 <DataGridTextColumn Header="Имя" Binding="{Binding name_user}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding surname_user}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Пол" Binding="{Binding Genders.name_gender}" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Header="Номер" Binding="{Binding phone}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Пол" Binding="{Binding Genders.name_gender}" Width="75"></DataGridTextColumn>
+                <DataGridTextColumn Header="Номер" Binding="{Binding phone}" Width="80"></DataGridTextColumn>
                 <DataGridTextColumn Header="Дата регистрации" Binding="{Binding date_reg, StringFormat=dd.MM.yyyy}" Width="*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Привилегия" Binding="{Binding Privilage.name_privilage}" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Привилегия" Binding="{Binding Privilage.name_privilage}" Width="78"></DataGridTextColumn>
                 <DataGridTextColumn Header="Роль" Binding="{Binding Roles.name_role}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <WrapPanel Grid.Row="2">
-            <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0">
-                <TextBox x:Name="Search" Width="150" Height="25" VerticalContentAlignment="Center" TextChanged="Search_TextChanged"></TextBox>
-                <ComboBox x:Name="typeSearch" Height="25" Width="100" VerticalContentAlignment="Center" Margin="15 0 0 0">
-                    <Label Content="Имя" FontFamily="Roboto" FontSize="16"/>
-                    <Label Content="Фамилия" FontFamily="Roboto" FontSize="16"/>
+            <StackPanel Orientation="Vertical" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0">
+                <TextBlock Text="Сортировка по фамилии" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="12" Margin="0 0 0 2"></TextBlock>
+                <ComboBox x:Name="VozrastYbivan" Height="20" Width="120" VerticalContentAlignment="Center" Margin="0 0 0 0" SelectionChanged="VozrastYbivan_SelectionChanged" FontSize="12">
+                    <Label Content="По умолчанию" FontFamily="Roboto" FontSize="12"/>
+                    <Label Content="По возрастанию" FontFamily="Roboto" FontSize="12"/>
+                    <Label Content="По убыванию" FontFamily="Roboto" FontSize="12"/>
                 </ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Width="150" VerticalAlignment="Center" Margin="15 0 0 0">
-                <TextBlock Text="Фильтрация по полу" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="14"></TextBlock>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <CheckBox Name="rbMan" Content="Мужской" FontFamily="Roboto" Checked="rbMan_Checked"></CheckBox>
-                    <CheckBox Name="rbWoman" Content="Женский" FontFamily="Roboto" Margin="10 0 0 0" Checked="rbWoman_Checked"></CheckBox>
+            <StackPanel Orientation="Horizontal" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0">
+                <TextBox x:Name="Search" Width="150" Height="25" VerticalContentAlignment="Center" TextChanged="Search_TextChanged"></TextBox>
+                <StackPanel HorizontalAlignment="Center" Margin="10 0 0 0">
+                    <TextBlock Text="Фильтровать по полю" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="12" Margin="0 0 0 2"></TextBlock>
+                    <ComboBox x:Name="typeSearch" Height="20" Width="80" VerticalContentAlignment="Center" Margin="0 0 0 0" FontSize="12" SelectionChanged="typeSearch_SelectionChanged">
+                        <Label Content="Имя" FontFamily="Roboto" FontSize="12"/>
+                        <Label Content="Фамилия" FontFamily="Roboto" FontSize="12"/>
+                    </ComboBox>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Height="25" Width="70" Margin=" 15 0 0 0">
-                <Button Name="ButtonRefresh" Content="Сброс" Height="25" Width="70" HorizontalAlignment="Right" Click="ButtonRefresh_Click"></Button>
+            <StackPanel Orientation="Vertical" Width="150" VerticalAlignment="Center" Margin="10 0 0 0">
+                <TextBlock Text="Фильтрация по полу" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="14"></TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <CheckBox Name="rbMan" Content="Мужской" FontFamily="Roboto" Checked="rbMan_Checked" Unchecked="rbMan_Unchecked"></CheckBox>
+                    <CheckBox Name="rbWoman" Content="Женский" FontFamily="Roboto" Margin="10 0 0 0" Checked="rbWoman_Checked" Unchecked="rbWoman_Unchecked"></CheckBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Height="25" Width="70" Margin=" 15 10 0 0">
+                <Button Name="ButtonRefresh" Style="{DynamicResource AcceptButtonStyle}" FontFamily="Roboto" FontSize="12" Padding="2 0 2 0" Content="Сброс" Height="19" Width="70" Click="ButtonRefresh_Click" FontWeight="Bold"></Button>
             </StackPanel>
         </WrapPanel>
     </Grid>

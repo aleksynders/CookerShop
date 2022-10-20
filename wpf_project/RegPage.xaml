@@ -37,7 +37,7 @@
                     <RadioButton Name="rbWoman">Женский</RadioButton>
                 </StackPanel>
             </GroupBox>
-            <Button Name="bRegistration" HorizontalAlignment="Center" Margin="0,10,0,0" Padding="5" Click="bRegistration_Click" Style="{DynamicResource AcceptButtonStyle}">Зарегистрироваться</Button>
+            <Button Name="bRegistration" HorizontalAlignment="Center" Padding="7 3 7 3" Margin="0,10,0,0" Click="bRegistration_Click" Style="{DynamicResource AcceptButtonStyle}">Зарегистрироваться</Button>
         </StackPanel>
     </Grid>
 </Page>
