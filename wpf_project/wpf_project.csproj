@@ -65,13 +65,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AdminPanel.xaml.cs">
+    <Compile Include="Pages\aListProduct.xaml.cs">
+      <DependentUpon>aListProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPanel.xaml.cs">
       <DependentUpon>AdminPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="aListUser.xaml.cs">
+    <Compile Include="Pages\aListUser.xaml.cs">
       <DependentUpon>aListUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AutoPage.xaml.cs">
+    <Compile Include="Pages\AutoPage.xaml.cs">
       <DependentUpon>AutoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="BaDa.Context.cs">
@@ -94,7 +97,7 @@
     <Compile Include="Genders.cs">
       <DependentUpon>BaDa.tt</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Manufacturers.cs">
@@ -117,7 +120,7 @@
     <Compile Include="Ratings.cs">
       <DependentUpon>BaDa.tt</DependentUpon>
     </Compile>
-    <Compile Include="RegPage.xaml.cs">
+    <Compile Include="Pages\RegPage.xaml.cs">
       <DependentUpon>RegPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Roles.cs">
@@ -129,19 +132,23 @@
     <Compile Include="Users.cs">
       <DependentUpon>BaDa.tt</DependentUpon>
     </Compile>
-    <Page Include="AdminPanel.xaml">
+    <Page Include="Pages\aListProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="aListUser.xaml">
+    <Page Include="Pages\AdminPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AutoPage.xaml">
+    <Page Include="Pages\aListUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="Pages\AutoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,7 +164,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RegPage.xaml">
+    <Page Include="Pages\RegPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

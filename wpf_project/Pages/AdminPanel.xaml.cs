@@ -37,5 +37,10 @@ namespace wpf_project
             FrameClass.loginAutorizate = null;
             FrameClass.MainFrame.Navigate(new MainPage());
         }
+
+        private void ListProduct_Click(object sender, RoutedEventArgs e)
+        {
+            FrameClass.MainFrame.Navigate(new aListProduct());
+        }
     }
 }
