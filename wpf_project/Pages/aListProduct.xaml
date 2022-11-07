@@ -7,7 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="aListProduct">
-
+    <Page.Resources>
+        <BitmapImage x:Key="noimage" UriSource="/Resources/noimage.png"/>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
@@ -30,14 +32,15 @@
                     <Border Padding="5" CornerRadius="5" BorderThickness="1" BorderBrush="#304FFE">
                         <Grid Name="gridProduct" Width="250" Height="auto">
                             <StackPanel>
-                                <TextBlock FontFamily="Roboto" Text="{Binding name}" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock FontFamily="Roboto" Text="{Binding name}" FontSize="16" FontWeight="Bold" TextDecorations="{x:Null}"/>
+                                <Image Width="100" Height="100" Source="{Binding image_product, TargetNullValue={StaticResource noimage}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 <TextBlock FontFamily="Roboto" Text="{Binding Manufacturers.manufacturer_name, StringFormat=Производитель: {0}}" FontSize="14"/>
-                                <TextBlock Text="{Binding price, StringFormat=Цена: {0}₽}" FontFamily="Roboto" FontSize="14"/>
+                                <TextBlock Uid="{Binding product_code}" Name="price" Loaded="price_Loaded" FontFamily="Roboto" FontSize="14"></TextBlock>
                                 <TextBlock Text="{Binding amount, StringFormat=Количество: {0}}" FontFamily="Roboto" FontSize="14"/>
-                                <TextBlock Text="{Binding Ratings.rate, StringFormat=Рейтинг: {0}}" FontFamily="Roboto" FontSize="14"/>
+                                <TextBlock Uid="{Binding product_code}" Name="ratingProduct" Loaded="rate_Loaded" FontFamily="Roboto" FontSize="18"/>
                                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
                                     <Button Uid="{Binding product_code}" Style="{DynamicResource AcceptButtonStyle}" Margin="3" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2">Изменить</Button>
-                                    <Button Uid="{Binding product_code}" Style="{DynamicResource ExitButtonStyle}" Margin="3" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2">Удалить</Button>
+                                    <Button Uid="{Binding product_code}" Style="{DynamicResource ExitButtonStyle}" Margin="3" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2" Click="Button_Click">Удалить</Button>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -45,5 +48,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+            <TextBlock Text="Общая сумма товаров: " FontSize="16" FontFamily="Roboto" FontWeight="DemiBold" Loaded="TextBlock_Loaded"></TextBlock>
+        </StackPanel>
     </Grid>
 </Page>
