@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Roboto" FontWeight="Bold">Товар</TextBlock>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-            <Button x:Name="AddProduct" Style="{DynamicResource AcceptButtonStyle}" Grid.Row="0" Margin="0,0,20,0" Content="Добавить товар" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="3"></Button>
+            <Button x:Name="AddProduct" Style="{DynamicResource AcceptButtonStyle}" Grid.Row="0" Margin="0,0,20,0" Content="Добавить товар" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="3" Click="AddProduct_Click"></Button>
             <Button x:Name="BackMain" Style="{DynamicResource MainButtonStyle}" Grid.Row="0" Margin="0,0,20,0" Content="Вернуться назад" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2" Click="BackMain_Click"></Button>
         </StackPanel>
         <ListView Grid.Row="1" Name="listProduct" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -39,7 +39,7 @@
                                 <TextBlock Text="{Binding amount, StringFormat=Количество: {0}}" FontFamily="Roboto" FontSize="14"/>
                                 <TextBlock Uid="{Binding product_code}" Name="ratingProduct" Loaded="rate_Loaded" FontFamily="Roboto" FontSize="18"/>
                                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
-                                    <Button Uid="{Binding product_code}" Style="{DynamicResource AcceptButtonStyle}" Margin="3" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2">Изменить</Button>
+                                    <Button Uid="{Binding product_code}" Style="{DynamicResource AcceptButtonStyle}" Margin="3" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2" Click="Button_Click_1">Изменить</Button>
                                     <Button Uid="{Binding product_code}" Style="{DynamicResource ExitButtonStyle}" Margin="3" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2" Click="Button_Click">Удалить</Button>
                                 </StackPanel>
                             </StackPanel>

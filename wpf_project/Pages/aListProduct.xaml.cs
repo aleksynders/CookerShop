@@ -105,5 +105,18 @@ namespace wpf_project
                 allSumProduct += Convert.ToInt32(Product.price * Product.amount);
             tb.Text = "Общая сумма товаров (без учета скидок): " + allSumProduct.ToString();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            int index = Convert.ToInt32(btn.Uid);
+            Products product = BaseClass.BD.Products.FirstOrDefault(x => x.product_code == index);
+            FrameClass.MainFrame.Navigate(new UpdateProduct(product));
+        }
+
+        private void AddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            FrameClass.MainFrame.Navigate(new UpdateProduct());
+        }
     }
 }

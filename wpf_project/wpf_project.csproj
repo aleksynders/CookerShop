@@ -129,6 +129,9 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>BaDa.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UpdateProduct.xaml.cs">
+      <DependentUpon>UpdateProduct.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>BaDa.tt</DependentUpon>
     </Compile>
@@ -165,6 +168,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\RegPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UpdateProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

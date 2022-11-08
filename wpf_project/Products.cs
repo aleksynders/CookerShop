@@ -24,7 +24,6 @@ namespace wpf_project
         public int manufacturer_code { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public int category { get; set; }
         public int price { get; set; }
         public int amount { get; set; }
         public Nullable<int> discount { get; set; }
