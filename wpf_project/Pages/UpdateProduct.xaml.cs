@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,8 @@ namespace wpf_project
             cbManufacturer.ItemsSource = BaseClass.BD.Manufacturers.ToList();
             cbManufacturer.SelectedValuePath = "manufacturer_code";
             cbManufacturer.DisplayMemberPath = "manufacturer_name";
+            cbManufacturer.SelectedIndex = 0;
+            tbDiscount.Text = "0";
         }
 
         public UpdateProduct()
@@ -51,11 +54,11 @@ namespace wpf_project
             tbDescription.Text = PRODUCT.description;
             tbDiscount.Text = Convert.ToString(PRODUCT.discount);
 
-            //if (product.image_product != null)
-            //{
-            //   BitmapImage img = new BitmapImage(new Uri(product.image_product, UriKind.RelativeOrAbsolute));
-            //   imgProduct.Source = img;
-            //}
+            if (product.image_product != null)
+            {
+                BitmapImage img = new BitmapImage(new Uri(product.image_product, UriKind.RelativeOrAbsolute));
+                imgProduct.Source = img;
+            }
         }
 
         private void BackMain_Click(object sender, RoutedEventArgs e)
@@ -77,6 +80,10 @@ namespace wpf_project
                 PRODUCT.amount = Convert.ToInt32(tbAmount.Text);
                 PRODUCT.manufacturer_code = cbManufacturer.SelectedIndex + 1;
                 PRODUCT.discount = Convert.ToInt32(tbDiscount.Text);
+                if (path!= null)
+                {
+                    PRODUCT.image_product = path;
+                }
                 if (flagUpdate == false)
                 {
                     BaseClass.BD.Products.Add(PRODUCT);
@@ -89,6 +96,24 @@ namespace wpf_project
             {
                 MessageBox.Show("Что-то пошло не по плану");
             }
+        }
+
+        private void bSavePhoto_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog OFD = new OpenFileDialog();
+                OFD.ShowDialog();
+                path = OFD.FileName;
+                string[] arrayPath = path.Split('\\');
+                path = "\\" + arrayPath[arrayPath.Length - 2] + "\\" + arrayPath[arrayPath.Length - 1];
+                BitmapImage bi3 = new BitmapImage();
+                bi3.BeginInit();
+                bi3.UriSource = new Uri("\\Resources\\icons8-new-100.png", UriKind.Relative);
+                bi3.EndInit();
+                imgProduct.Source = bi3;
+            }
+            catch { }
         }
     }
 }

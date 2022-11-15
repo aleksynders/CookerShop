@@ -27,7 +27,7 @@ namespace wpf_project
         public int price { get; set; }
         public int amount { get; set; }
         public Nullable<int> discount { get; set; }
-        public byte[] image_product { get; set; }
+        public string image_product { get; set; }
         public Nullable<int> rate { get; set; }
     
         public virtual Manufacturers Manufacturers { get; set; }

@@ -53,7 +53,7 @@
           <Property Name="price" Type="int" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
           <Property Name="discount" Type="int" />
-          <Property Name="image_product" Type="varbinary(max)" />
+          <Property Name="image_product" Type="nvarchar" MaxLength="1000" />
           <Property Name="rate" Type="int" />
         </EntityType>
         <EntityType Name="Ratings">
@@ -305,7 +305,7 @@
           <Property Name="price" Type="Int32" Nullable="false" />
           <Property Name="amount" Type="Int32" Nullable="false" />
           <Property Name="discount" Type="Int32" />
-          <Property Name="image_product" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="image_product" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="rate" Type="Int32" />
           <NavigationProperty Name="Manufacturers" Relationship="Model.FK_Products_Manufacturers" FromRole="Products" ToRole="Manufacturers" />
           <NavigationProperty Name="PriceChange" Relationship="Model.FK_PriceChange_Products" FromRole="Products" ToRole="PriceChange" />

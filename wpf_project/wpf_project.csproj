@@ -232,6 +232,7 @@
       <DependentUpon>BaDa.edmx</DependentUpon>
       <LastGenOutput>BaDa.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\icons8-new-100.png" />
     <Resource Include="Resources\noimage.png" />
     <Resource Include="Resources\icons8-admin-100.png" />
     <Resource Include="Resources\laptop.png" />
