@@ -65,6 +65,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\mainPageUsers.xaml.cs">
+      <DependentUpon>mainPageUsers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\aListProduct.xaml.cs">
       <DependentUpon>aListProduct.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
     <Compile Include="Users.cs">
       <DependentUpon>BaDa.tt</DependentUpon>
     </Compile>
+    <Page Include="Pages\mainPageUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\aListProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

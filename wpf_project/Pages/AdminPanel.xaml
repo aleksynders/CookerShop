@@ -20,7 +20,12 @@
             </StackPanel>
             <StackPanel Margin="10">
                 <Image Source="\Resources\icons8-admin-100.png" Height="120"></Image>
-                <Label Name="LoginUserAutorizate" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" FontWeight="Medium"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <TextBlock Name="textLogin" Margin="0 0 5 0" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" FontWeight="Medium" Height="25">Учетная запись: </TextBlock>
+                    <TextBlock Name="LoginUserAutorizate" FontFamily="Roboto" FontSize="16" FontWeight="Medium" Height="25" Foreground="#304FFE">login</TextBlock>
+                </StackPanel>
+                <TextBlock Name="NameUserAutorizate" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" FontWeight="Medium" Height="25">Name</TextBlock>
+                <TextBlock Name="DateRegUserAutorizate" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" FontWeight="Medium" Height="25">DateReg</TextBlock>
                 <Button x:Name="ExitUser" Style="{DynamicResource ExitButtonStyle}" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="9,1,9,1" Click="ExitUser_Click">Выйти</Button>
             </StackPanel>
         </StackPanel>

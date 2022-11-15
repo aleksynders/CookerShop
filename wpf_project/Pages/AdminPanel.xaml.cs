@@ -23,8 +23,10 @@ namespace wpf_project
         public AdminPanel()
         {
             InitializeComponent();
-            LoginUserAutorizate.Content = "Учётная запись: " + FrameClass.loginAutorizate;
-            
+            Users searchUser = BaseClass.BD.Users.FirstOrDefault(x => x.login == FrameClass.loginAutorizate);
+            LoginUserAutorizate.Text = searchUser.login;
+            NameUserAutorizate.Text = searchUser.name_user + " " + searchUser.surname_user;
+            DateRegUserAutorizate.Text = "Дата регистрации: " + (searchUser.date_reg).ToString("d") + "г.";
         }
 
         private void ListUser_Click(object sender, RoutedEventArgs e)

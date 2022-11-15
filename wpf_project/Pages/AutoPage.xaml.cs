@@ -52,7 +52,8 @@ namespace wpf_project
                         {
                             // Обычный пользователь (0)
                             case 0:
-
+                                FrameClass.loginAutorizate = tbLogin.Text;
+                                FrameClass.MainFrame.Navigate(new mainPageUsers());
                                 break;
                             // Администратор (1)
                             case 1:
