@@ -81,7 +81,7 @@ namespace wpf_project
 
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
-
+            FrameClass.MainFrame.Navigate(new ProfileUser());
         }
     }
 }

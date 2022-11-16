@@ -73,9 +73,9 @@ namespace wpf_project.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_admin_100 {
+        internal static System.Drawing.Bitmap icons8_account_100 {
             get {
-                object obj = ResourceManager.GetObject("icons8_admin_100", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_account_100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace wpf_project.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_new_100 {
+        internal static System.Drawing.Bitmap icons8_admin_100 {
             get {
-                object obj = ResourceManager.GetObject("icons8_new_100", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_admin_100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

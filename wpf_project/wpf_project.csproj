@@ -115,6 +115,9 @@
     <Compile Include="Products.cs">
       <DependentUpon>BaDa.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ProfileUser.xaml.cs">
+      <DependentUpon>ProfileUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -182,6 +185,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ProfileUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -239,6 +246,7 @@
       <DependentUpon>BaDa.edmx</DependentUpon>
       <LastGenOutput>BaDa.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\icons8-account-100.png" />
     <Resource Include="Resources\icons8-new-100.png" />
     <Resource Include="Resources\noimage.png" />
     <Resource Include="Resources\icons8-admin-100.png" />
