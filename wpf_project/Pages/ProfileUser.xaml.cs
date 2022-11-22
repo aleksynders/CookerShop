@@ -18,12 +18,13 @@ namespace wpf_project
     /// <summary>
     /// Логика взаимодействия для ProfileUser.xaml
     /// </summary>
+    /// 
     public partial class ProfileUser : Page
     {
+        Users searchUser = BaseClass.BD.Users.FirstOrDefault(x => x.login == FrameClass.loginAutorizate);
         public ProfileUser()
         {
             InitializeComponent();
-            Users searchUser = BaseClass.BD.Users.FirstOrDefault(x => x.login == FrameClass.loginAutorizate);
             LoginUser.Text = searchUser.login;
             IDUser.Text = searchUser.ID.ToString();
             NameUser.Text = "Имя: " + searchUser.name_user;
@@ -47,6 +48,20 @@ namespace wpf_project
         private void BackMain_Click(object sender, RoutedEventArgs e)
         {
             FrameClass.MainFrame.Navigate(new mainPageUsers());
+        }
+
+        private void ResetInfo_Click(object sender, RoutedEventArgs e)
+        {
+            WindowChangeInfo windowChangeInfo = new WindowChangeInfo(searchUser);
+            windowChangeInfo.ShowDialog();
+            FrameClass.MainFrame.Navigate(new ProfileUser());
+        }
+
+        private void ResetPass_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePass changePass = new ChangePass();
+            changePass.ShowDialog();
+            FrameClass.MainFrame.Navigate(new ProfileUser());
         }
     }
 }

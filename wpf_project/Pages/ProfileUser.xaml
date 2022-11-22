@@ -40,8 +40,8 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1">
-            <Button x:Name="ResetPass" Style="{DynamicResource AcceptButtonStyle}" Margin="0 5 0 0" Content="Изменить пароль" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2 1 2 1"></Button>
-            <Button x:Name="ResetInfo" Style="{DynamicResource AcceptButtonStyle}" Margin="5 5 0 0" Content="Изменить данные" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2 1 2 1"></Button>
+            <Button x:Name="ResetPass" Style="{DynamicResource AcceptButtonStyle}" Margin="0 5 0 0" Content="Изменить пароль" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2 1 2 1" Click="ResetPass_Click"></Button>
+            <Button x:Name="ResetInfo" Style="{DynamicResource AcceptButtonStyle}" Margin="5 5 0 0" Content="Изменить данные" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2 1 2 1" Click="ResetInfo_Click"></Button>
         </StackPanel>
     </Grid>
 </Page>

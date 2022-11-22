@@ -1,0 +1,23 @@
+﻿<Window x:Class="wpf_project.WindowChangeInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpf_project"
+        mc:Ignorable="d"
+        Title="WindowChangeInfo" Height="250" Width="350" WindowStartupLocation="CenterScreen" MaxHeight="250" MinHeight="250" MaxWidth="350" MinWidth="350">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <GroupBox Header="Введите новое имя" FontFamily="Roboto" FontSize="16" FontWeight="DemiBold" Margin="5">
+                <TextBox Name="tbName"></TextBox>
+            </GroupBox>
+            <GroupBox Header="Введите новую фамилию" FontFamily="Roboto" FontSize="16" FontWeight="DemiBold" Margin="5">
+                <TextBox Name="tbSurname"></TextBox>
+            </GroupBox>
+            <GroupBox Header="Введите новый телефон" FontFamily="Roboto" FontSize="16" FontWeight="DemiBold" Margin="5">
+                <TextBox Name="tbPhone" MaxLength="11"></TextBox>
+            </GroupBox>
+            <Button Style="{DynamicResource AcceptButtonStyle}" Click="Button_Click" Height="25" Width="140" Padding="1" Margin="2">Изменить данные</Button>
+        </StackPanel>
+    </Grid>
+</Window>
