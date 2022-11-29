@@ -60,6 +60,7 @@ namespace wpf_project
             {
                 Privilage = "Отсутствует";
                 
+                PrivilageUser.Foreground = System.Windows.Media.Brushes.Red;
             }
             else
             {
