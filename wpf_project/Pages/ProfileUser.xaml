@@ -20,9 +20,19 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="BackMain" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{DynamicResource MainButtonStyle}" Grid.Row="0" Grid.Column="1" Margin="0,0,30,0" Content="Вернуться назад" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2" Click="BackMain_Click"></Button>
         <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Image Source="\Resources\icons8-account-100.png" Height="100" Width="100"/>
-            <Button x:Name="ResetPhoto" Style="{DynamicResource AcceptButtonStyle}" Margin="0 5 0 0" Content="Изменить фото" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2 1 2 1"></Button>
-            <Button x:Name="DeletePhoto" Style="{DynamicResource ExitButtonStyle}" Margin="0 5 0 0" Content="Удалить фото" Height="13" Width="80" FontSize="8" FontFamily="Roboto" FontWeight="DemiBold" Padding="2 1 2 1"></Button>
+            <Image Name="imgUserMain"  Source="\Resources\icons8-account-100.png" Height="100" Width="100"/>
+            <Button x:Name="ResetPhoto" Style="{DynamicResource AcceptButtonStyle}" Margin="0 5 0 0" Content="Изменить фото" Width="120" FontSize="12" FontFamily="Roboto" FontWeight="DemiBold" Padding="2 1 2 1" Click="ResetPhoto_Click"></Button>
+            <Button x:Name="AllPhoto" Style="{DynamicResource AcceptButtonStyle}" Margin="0 5 0 0" Content="Добавить несколько фото" Width="120" FontSize="9" FontFamily="Roboto" FontWeight="DemiBold" Padding="2 1 2 1" Click="ChangeAllPhoto"></Button>
+            <Button x:Name="ChangeOldPhoto" Style="{DynamicResource AcceptButtonStyle}" Margin="0 5 0 0" Content="Изменить фото на старое" Width="120" FontSize="9" FontFamily="Roboto" FontWeight="DemiBold" Padding="2 1 2 1" Click="DeletePhoto_Click"></Button>
+
+            <StackPanel Name="spGallery" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{DynamicResource AcceptButtonStyle}" Name="Back" Click="Back_Click" IsEnabled="False" Padding="2 1 2 1" Height="20">Назад</Button>
+                    <Image Width="150" Height="150" Name="imgGallery"></Image>
+                    <Button Style="{DynamicResource AcceptButtonStyle}" Name="Next" Click="Next_Click" Padding="2 1 2 1" Height="20">Вперед</Button>
+                </StackPanel>
+                <Button Style="{DynamicResource AcceptButtonStyle}" Padding="2 1 2 1" Name="btnOld" Click="btnOld_Click" Width="190">Изменить фото на выбранное</Button>
+            </StackPanel>
         </StackPanel>
         <StackPanel Margin="0 10 0 0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

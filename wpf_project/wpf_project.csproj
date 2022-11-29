@@ -109,6 +109,9 @@
     <Compile Include="Manufacturers.cs">
       <DependentUpon>BaDa.tt</DependentUpon>
     </Compile>
+    <Compile Include="Photos.cs">
+      <DependentUpon>BaDa.tt</DependentUpon>
+    </Compile>
     <Compile Include="PriceChange.cs">
       <DependentUpon>BaDa.tt</DependentUpon>
     </Compile>

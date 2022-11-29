@@ -4,18 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a1ed7ba8e1b24316b8edb8332404ae1d" Name="Diagram1" ZoomLevel="46">
+      <Diagram DiagramId="a1ed7ba8e1b24316b8edb8332404ae1d" Name="Diagram1" ZoomLevel="56">
         <EntityTypeShape EntityType="Model.Genders" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Model.Manufacturers" Width="1.5" PointX="0.75" PointY="9.25" />
-        <EntityTypeShape EntityType="Model.Privilage" Width="1.5" PointX="0.75" PointY="3.625" />
-        <EntityTypeShape EntityType="Model.Products" Width="1.5" PointX="3" PointY="9.75" />
-        <EntityTypeShape EntityType="Model.Ratings" Width="1.5" PointX="0.75" PointY="11.625" />
-        <EntityTypeShape EntityType="Model.Roles" Width="1.5" PointX="0.75" PointY="6.375" />
-        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.25" />
-        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="3" PointY="2.5" />
-        <EntityTypeShape EntityType="Model.PriceChange" Width="1.5" PointX="5.25" PointY="3.25" />
+        <EntityTypeShape EntityType="Model.Manufacturers" Width="1.5" PointX="0.75" PointY="12.25" />
+        <EntityTypeShape EntityType="Model.Photos" Width="1.5" PointX="5.25" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.Privilage" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="Model.Products" Width="1.5" PointX="3" PointY="10" />
+        <EntityTypeShape EntityType="Model.Ratings" Width="1.5" PointX="0.75" PointY="9.625" />
+        <EntityTypeShape EntityType="Model.Roles" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.75" />
+        <EntityTypeShape EntityType="Model.Users" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="Model.PriceChange" Width="1.5" PointX="5.25" PointY="3.5" />
         <AssociationConnector Association="Model.FK_Users_Genders" />
         <AssociationConnector Association="Model.FK_Products_Manufacturers" />
+        <AssociationConnector Association="Model.FK_Photos_Users" />
         <AssociationConnector Association="Model.FK_Users_Privilage" />
         <AssociationConnector Association="Model.FK_PriceChange_Products" />
         <AssociationConnector Association="Model.FK_Products_Ratings" />

@@ -17,6 +17,7 @@ namespace wpf_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
+            this.Photos = new HashSet<Photos>();
             this.PriceChange = new HashSet<PriceChange>();
         }
     
@@ -32,6 +33,8 @@ namespace wpf_project
         public Nullable<int> privilege { get; set; }
     
         public virtual Genders Genders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Photos> Photos { get; set; }
         public virtual Privilage Privilage { get; set; }
         public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

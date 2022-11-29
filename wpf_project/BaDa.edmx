@@ -19,6 +19,16 @@
           <Property Name="manufacturer_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="manufacturer_name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Photos">
+          <Key>
+            <PropertyRef Name="IdPhoto" />
+          </Key>
+          <Property Name="IdPhoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="PhotoPath" Type="nvarchar(max)" />
+          <Property Name="PhotoBinary" Type="varbinary(max)" />
+          <Property Name="mainPhoto" Type="bit" />
+        </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "41П_МДК01.01_Громов.dbo.PriceChange" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="PriceChange">
@@ -96,6 +106,18 @@
           <Property Name="role" Type="int" Nullable="false" />
           <Property Name="privilege" Type="int" />
         </EntityType>
+        <Association Name="FK_Photos_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Photos" Type="Self.Photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Photos">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PriceChange_Products">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="PriceChange" Type="Self.PriceChange" Multiplicity="*" />
@@ -183,6 +205,7 @@
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photos" EntityType="Self.Photos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Privilage" EntityType="Self.Privilage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
@@ -198,6 +221,10 @@
     [PriceChange].[date_change] AS [date_change]
     FROM [dbo].[PriceChange] AS [PriceChange]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Photos_Users" Association="Self.FK_Photos_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Photos" EntitySet="Photos" />
+          </AssociationSet>
           <AssociationSet Name="FK_PriceChange_Products" Association="Self.FK_PriceChange_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="PriceChange" EntitySet="PriceChange" />
@@ -234,6 +261,7 @@
         <EntityContainer Name="CookersShopEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Genders" EntityType="Model.Genders" />
           <EntitySet Name="Manufacturers" EntityType="Model.Manufacturers" />
+          <EntitySet Name="Photos" EntityType="Model.Photos" />
           <EntitySet Name="Privilage" EntityType="Model.Privilage" />
           <EntitySet Name="Products" EntityType="Model.Products" />
           <EntitySet Name="Ratings" EntityType="Model.Ratings" />
@@ -248,6 +276,10 @@
           <AssociationSet Name="FK_Products_Manufacturers" Association="Model.FK_Products_Manufacturers">
             <End Role="Manufacturers" EntitySet="Manufacturers" />
             <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photos_Users" Association="Model.FK_Photos_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Photos" EntitySet="Photos" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Privilage" Association="Model.FK_Users_Privilage">
             <End Role="Privilage" EntitySet="Privilage" />
@@ -285,6 +317,17 @@
           <Property Name="manufacturer_code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="manufacturer_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Products" Relationship="Model.FK_Products_Manufacturers" FromRole="Manufacturers" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Photos">
+          <Key>
+            <PropertyRef Name="IdPhoto" />
+          </Key>
+          <Property Name="IdPhoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoBinary" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="mainPhoto" Type="Boolean" />
+          <NavigationProperty Name="Users" Relationship="Model.FK_Photos_Users" FromRole="Photos" ToRole="Users" />
         </EntityType>
         <EntityType Name="Privilage">
           <Key>
@@ -353,6 +396,7 @@
           <Property Name="role" Type="Int32" Nullable="false" />
           <Property Name="privilege" Type="Int32" />
           <NavigationProperty Name="Genders" Relationship="Model.FK_Users_Genders" FromRole="Users" ToRole="Genders" />
+          <NavigationProperty Name="Photos" Relationship="Model.FK_Photos_Users" FromRole="Users" ToRole="Photos" />
           <NavigationProperty Name="Privilage" Relationship="Model.FK_Users_Privilage" FromRole="Users" ToRole="Privilage" />
           <NavigationProperty Name="Roles" Relationship="Model.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
           <NavigationProperty Name="PriceChange" Relationship="Model.FK_PriceChange_Users" FromRole="Users" ToRole="PriceChange" />
@@ -394,6 +438,18 @@
             </Principal>
             <Dependent Role="Products">
               <PropertyRef Name="manufacturer_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Photos_Users">
+          <End Type="Model.Users" Role="Users" Multiplicity="1" />
+          <End Type="Model.Photos" Role="Photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Photos">
+              <PropertyRef Name="IdUser" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -476,6 +532,17 @@
               <MappingFragment StoreEntitySet="Manufacturers">
                 <ScalarProperty Name="manufacturer_name" ColumnName="manufacturer_name" />
                 <ScalarProperty Name="manufacturer_code" ColumnName="manufacturer_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photos">
+            <EntityTypeMapping TypeName="Model.Photos">
+              <MappingFragment StoreEntitySet="Photos">
+                <ScalarProperty Name="mainPhoto" ColumnName="mainPhoto" />
+                <ScalarProperty Name="PhotoBinary" ColumnName="PhotoBinary" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdPhoto" ColumnName="IdPhoto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

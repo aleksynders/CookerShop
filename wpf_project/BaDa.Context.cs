@@ -27,6 +27,7 @@ namespace wpf_project
     
         public virtual DbSet<Genders> Genders { get; set; }
         public virtual DbSet<Manufacturers> Manufacturers { get; set; }
+        public virtual DbSet<Photos> Photos { get; set; }
         public virtual DbSet<Privilage> Privilage { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Ratings> Ratings { get; set; }
