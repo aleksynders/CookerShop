@@ -19,6 +19,9 @@
                 <TextBlock FontFamily="Roboto" FontSize="14" Margin="5,0,0,0" Grid.Column="0" FontWeight="Bold">Админ панель</TextBlock>
             </StackPanel>
             <StackPanel Margin="10">
+                <Button x:Name="ChangePass" Style="{DynamicResource AcceptButtonStyle}" Margin="5" FontFamily="Roboto" FontSize="14" Width="170" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="3,2,3,2" Click="ChangePass_Click" >Изменить пароль</Button>
+                <Button x:Name="ChangeInfo" Style="{DynamicResource AcceptButtonStyle}" Margin="5" FontFamily="Roboto" FontSize="14" Width="170" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="3 2 3 2" Click="ChangeInfo_Click" >Изменить данные</Button>
+
                 <Image Source="\Resources\icons8-admin-100.png" Height="120"></Image>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <TextBlock Name="textLogin" Margin="0 0 5 0" FontFamily="Roboto" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="0" FontWeight="Medium" Height="25">Учетная запись: </TextBlock>

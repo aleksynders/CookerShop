@@ -37,15 +37,26 @@ namespace wpf_project
                     MessageBox.Show("Пароли не совпадают!", "", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
-                    if(!CheckPass(tbNewPass.Password))
-                        MessageBox.Show("Новый пароль не надёжный!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if(searchUser.role != 1)
+                    {
+                        if (!CheckPass(tbNewPass.Password))
+                            MessageBox.Show("Новый пароль не надёжный!", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                        else
+                        {
+                            searchUser.password = tbNewPass.Password.GetHashCode();
+                            BaseClass.BD.SaveChanges();
+                            MessageBox.Show("Пароль успешно изменён!", "", MessageBoxButton.OK);
+                            this.Close();
+                        }
+                    }
                     else
                     {
-                        searchUser.password = tbNewPass.GetHashCode();
+                        searchUser.password = tbNewPass.Password.GetHashCode();
                         BaseClass.BD.SaveChanges();
-                        MessageBox.Show("Пароль успешно изменён!", "", MessageBoxButton.OK);
+                        MessageBox.Show("Пароль успешно изменён!", "Смена админского пароля", MessageBoxButton.OK);
                         this.Close();
                     }
+
                 }
             }
         }

@@ -23,6 +23,12 @@ namespace wpf_project
         public AutoPage()
         {
             InitializeComponent();
+
+            //На случай сноса админского пароля
+            //Users searchUser = BaseClass.BD.Users.FirstOrDefault(x => x.login == "admin");
+            //var pass = "admin";
+            //searchUser.password = pass.GetHashCode();
+            //BaseClass.BD.SaveChanges();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

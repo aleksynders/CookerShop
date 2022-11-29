@@ -20,10 +20,10 @@ namespace wpf_project
     /// </summary>
     public partial class AdminPanel : Page
     {
+        Users searchUser = BaseClass.BD.Users.FirstOrDefault(x => x.login == FrameClass.loginAutorizate);
         public AdminPanel()
         {
             InitializeComponent();
-            Users searchUser = BaseClass.BD.Users.FirstOrDefault(x => x.login == FrameClass.loginAutorizate);
             LoginUserAutorizate.Text = searchUser.login;
             NameUserAutorizate.Text = searchUser.name_user + " " + searchUser.surname_user;
             DateRegUserAutorizate.Text = "Дата регистрации: " + (searchUser.date_reg).ToString("d") + "г.";
@@ -43,6 +43,20 @@ namespace wpf_project
         private void ListProduct_Click(object sender, RoutedEventArgs e)
         {
             FrameClass.MainFrame.Navigate(new aListProduct());
+        }
+
+        private void ChangePass_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePass changePass = new ChangePass();
+            changePass.ShowDialog();
+            FrameClass.MainFrame.Navigate(new AdminPanel());
+        }
+
+        private void ChangeInfo_Click(object sender, RoutedEventArgs e)
+        {
+            WindowChangeInfo windowChangeInfo = new WindowChangeInfo(searchUser);
+            windowChangeInfo.ShowDialog();
+            FrameClass.MainFrame.Navigate(new AdminPanel());
         }
     }
 }
