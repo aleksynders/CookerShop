@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,6 +27,8 @@ namespace wpf_project
         {
             InitializeComponent();
             listProduct.ItemsSource = BaseClass.BD.Products.ToList();
+            Filter.SelectedIndex = 0;
+            Sortirovka.SelectedIndex = 0;
         }
 
         private void rate_Loaded(object sender, RoutedEventArgs e)
@@ -82,6 +87,137 @@ namespace wpf_project
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
             FrameClass.MainFrame.Navigate(new ProfileUser());
+        }
+
+        void SearchMainMethod()
+        {
+            string strSearch = Search.Text.ToLower();
+            var regexSearch = new Regex($@"(^({strSearch}).*)");
+
+            if(Sortirovka.SelectedIndex == 0)
+            {
+                if (cbFilter.IsChecked == true)
+                {
+                    if (Filter.SelectedIndex == 0)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.rate !=null);
+                    }
+                    else if (Filter.SelectedIndex == 1)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0 && x.rate != null);
+                    }
+                    else
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0 && x.rate != null);
+                    }
+                }
+                else
+                {
+                    if (Filter.SelectedIndex == 0)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true );
+                    }
+                    else if (Filter.SelectedIndex == 1)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0);
+                    }
+                    else
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0);
+                    }
+                }
+            }
+            else if(Sortirovka.SelectedIndex == 1) 
+            {
+                if (cbFilter.IsChecked == true)
+                {
+                    if (Filter.SelectedIndex == 0)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.rate != null);
+                    }
+                    else if (Filter.SelectedIndex == 1)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0 && x.rate != null);
+                    }
+                    else
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0 && x.rate != null);
+                    }
+                }
+                else
+                {
+                    if (Filter.SelectedIndex == 0)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true);
+                    }
+                    else if (Filter.SelectedIndex == 1)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0);
+                    }
+                    else
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0);
+                    }
+                }
+            }
+            else if (Sortirovka.SelectedIndex == 2) 
+            {
+                if (cbFilter.IsChecked == true)
+                {
+                    if (Filter.SelectedIndex == 0)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.rate != null);
+                    }
+                    else if (Filter.SelectedIndex == 1)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100 ).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0 && x.rate != null);
+                    }
+                    else
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100 ).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0 && x.rate != null);
+                    }
+                }
+                else
+                {
+                    if (Filter.SelectedIndex == 0)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true);
+                    }
+                    else if (Filter.SelectedIndex == 1)
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0);
+                    }
+                    else
+                    {
+                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0);
+                    }
+                }
+            }
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SearchMainMethod();
+        }
+
+        private void cbFilter_Checked(object sender, RoutedEventArgs e)
+        {
+            SearchMainMethod();
+        }
+
+        private void cbFilter_Unchecked(object sender, RoutedEventArgs e)
+        {
+            SearchMainMethod();
+        }
+
+        private void Filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SearchMainMethod();
+        }
+
+        private void Sortirovka_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SearchMainMethod();
         }
     }
 }

@@ -48,8 +48,30 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
-            <TextBlock Text="Общая сумма товаров: " FontSize="16" FontFamily="Roboto" FontWeight="DemiBold" Loaded="TextBlock_Loaded"></TextBlock>
-        </StackPanel>
+        <WrapPanel Grid.Row="2">
+            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 45 0">
+                <TextBlock Text="Общая сумма товаров: " FontSize="14" FontFamily="Roboto" FontWeight="DemiBold" Loaded="TextBlock_Loaded"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0">
+                <TextBlock Text="Фильтр" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="12" Margin="0 0 0 2"></TextBlock>
+                <StackPanel Orientation="Horizontal" Height="20" HorizontalAlignment="Center" Margin="0 0 0 0">
+                    <ComboBox x:Name="Filter" Height="20" Width="120" VerticalContentAlignment="Center" Margin="0 0 0 0" FontSize="12" SelectionChanged="Filter_SelectionChanged">
+                        <Label Content="Все товары" FontFamily="Roboto" FontSize="12"/>
+                        <Label Content="Со скидкой" FontFamily="Roboto" FontSize="12"/>
+                        <Label Content="Без скидок" FontFamily="Roboto" FontSize="12"/>
+                    </ComboBox>
+                    <CheckBox x:Name="cbFilter" Content="С оценками" Margin="10 0 0 0" FontFamily="Roboto" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="cbFilter_Checked" Unchecked="cbFilter_Unchecked"></CheckBox>
+                    <TextBox x:Name="Search" Width="150" Margin="10 0 0 0" FontFamily="Roboto" FontSize="12" TextChanged="Search_TextChanged"></TextBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Height="40" HorizontalAlignment="Left" Margin="15 0 0 0">
+                <TextBlock Text="Сортировка" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="12" Margin="0 0 0 2"></TextBlock>
+                <ComboBox x:Name="Sortirovka" Height="20" Width="120" VerticalContentAlignment="Center" Margin="0 0 0 0" FontSize="12" SelectionChanged="Sortirovka_SelectionChanged">
+                    <Label Content="По умолчанию" FontFamily="Roboto" FontSize="12"/>
+                    <Label Content="По возрастанию цены" FontFamily="Roboto" FontSize="12"/>
+                    <Label Content="По убыванию цены" FontFamily="Roboto" FontSize="12"/>
+                </ComboBox>
+            </StackPanel>
+        </WrapPanel>
     </Grid>
 </Page>
