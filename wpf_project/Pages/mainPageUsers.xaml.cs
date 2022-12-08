@@ -18,15 +18,19 @@ using System.Windows.Shapes;
 
 namespace wpf_project
 {
-    /// <summary>
-    /// Логика взаимодействия для mainPageUsers.xaml
-    /// </summary>
+    
     public partial class mainPageUsers : Page
     {
+        PageChange pc = new PageChange();
+        List<Products> ProductsFilter = new List<Products>();
+
         public mainPageUsers()
         {
             InitializeComponent();
+            ProductsFilter = BaseClass.BD.Products.ToList();
             listProduct.ItemsSource = BaseClass.BD.Products.ToList();
+            pc.CountPage = BaseClass.BD.Products.ToList().Count;
+            DataContext = pc;
             Filter.SelectedIndex = 0;
             Sortirovka.SelectedIndex = 0;
         }
@@ -92,38 +96,40 @@ namespace wpf_project
         void SearchMainMethod()
         {
             string strSearch = Search.Text.ToLower();
-            var regexSearch = new Regex($@"(^({strSearch}).*)");
+            //var regexSearch = new Regex($@"(^({strSearch}).*)");
 
-            if(Sortirovka.SelectedIndex == 0)
+            List <Products> fsItog = new List<Products>();
+
+            if (Sortirovka.SelectedIndex == 0)
             {
                 if (cbFilter.IsChecked == true)
                 {
                     if (Filter.SelectedIndex == 0)
-                    {
-                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.rate !=null);
+                    { //Where(x => x.name.Contains(strSearch))
+                        fsItog = BaseClass.BD.Products.Where(x => x.name.Contains(strSearch) && x.rate != null).ToList();
                     }
                     else if (Filter.SelectedIndex == 1)
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0 && x.rate != null);
+                        fsItog = BaseClass.BD.Products.Where(x => x.name.Contains(strSearch) && x.discount > 0 && x.rate != null).ToList();
                     }
                     else
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0 && x.rate != null);
+                        fsItog = BaseClass.BD.Products.Where(x => x.name.Contains(strSearch) && x.discount == 0 && x.rate != null).ToList();
                     }
                 }
                 else
                 {
                     if (Filter.SelectedIndex == 0)
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true );
+                        fsItog = BaseClass.BD.Products.Where(x => x.name.Contains(strSearch)).ToList();
                     }
                     else if (Filter.SelectedIndex == 1)
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0);
+                        fsItog = BaseClass.BD.Products.Where(x => x.name.Contains(strSearch) && x.discount > 0).ToList();
                     }
                     else
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0);
+                        fsItog = BaseClass.BD.Products.Where(x => x.name.Contains(strSearch) && x.discount == 0).ToList();
                     }
                 }
             }
@@ -133,30 +139,30 @@ namespace wpf_project
                 {
                     if (Filter.SelectedIndex == 0)
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.rate != null);
+                        fsItog = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).Where(x => x.name.Contains(strSearch) && x.rate != null).ToList();
                     }
                     else if (Filter.SelectedIndex == 1)
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0 && x.rate != null);
+                        fsItog = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).Where(x => x.name.Contains(strSearch) && x.discount > 0 && x.rate != null).ToList();
                     }
                     else
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0 && x.rate != null);
+                        fsItog = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).Where(x => x.name.Contains(strSearch) && x.discount == 0 && x.rate != null).ToList();
                     }
                 }
                 else
                 {
                     if (Filter.SelectedIndex == 0)
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true);
+                        fsItog = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).Where(x => x.name.Contains(strSearch)).ToList();
                     }
                     else if (Filter.SelectedIndex == 1)
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0);
+                        fsItog = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).Where(x => x.name.Contains(strSearch) && x.discount > 0).ToList();
                     }
                     else
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0);
+                        fsItog = BaseClass.BD.Products.OrderBy(x => x.price * (100 - x.discount) / 100).Where(x => x.name.Contains(strSearch) && x.discount == 0).ToList();
                     }
                 }
             }
@@ -166,33 +172,40 @@ namespace wpf_project
                 {
                     if (Filter.SelectedIndex == 0)
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.rate != null);
+                        fsItog = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).Where(x => x.name.Contains(strSearch) && x.rate != null).ToList();
                     }
                     else if (Filter.SelectedIndex == 1)
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100 ).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0 && x.rate != null);
+                        fsItog = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100 ).Where(x => x.name.Contains(strSearch) && x.discount > 0 && x.rate != null).ToList();
                     }
                     else
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100 ).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0 && x.rate != null);
+                        fsItog = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100 ).Where(x => x.name.Contains(strSearch) && x.discount == 0 && x.rate != null).ToList();
                     }
                 }
                 else
                 {
                     if (Filter.SelectedIndex == 0)
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true);
+                        fsItog = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).Where(x => x.name.Contains(strSearch)).ToList();
                     }
                     else if (Filter.SelectedIndex == 1)
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount > 0);
+                        fsItog = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).Where(x => x.name.Contains(strSearch) && x.discount > 0).ToList();
                     }
                     else
                     {
-                        listProduct.ItemsSource = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).ToList().Where(x => regexSearch.IsMatch(x.name.ToLower()) == true && x.discount == 0);
+                        fsItog = BaseClass.BD.Products.OrderByDescending(x => x.price * (100 - x.discount) / 100).Where(x => x.name.Contains(strSearch) && x.discount == 0).ToList();
                     }
                 }
             }
+
+            listProduct.ItemsSource = fsItog;
+            ProductsFilter = fsItog;
+
+            string temp = txtPageCount.Text;
+            txtPageCount.Text = "";
+            txtPageCount.Text = temp;
         }
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
@@ -218,6 +231,74 @@ namespace wpf_project
         private void Sortirovka_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SearchMainMethod();
+        }
+
+
+
+
+        private void txtPageCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                pc.CountPage = Convert.ToInt32(txtPageCount.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
+            }
+            catch
+            {
+                pc.CountPage = ProductsFilter.Count; // если в текстовом поле значения нет, присваиваем свойству объекта, которое хранит количество записей на странице количество элементов в списке
+            }
+            pc.Countlist = ProductsFilter.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
+            listProduct.ItemsSource = ProductsFilter.Skip(0).Take(pc.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
+            pc.CurrentPage = 1; // текущая страница - это страница 1
+        }
+
+        private void GoPage_MouseDown(object sender, MouseButtonEventArgs e)  // обработка нажатия на один из Textblock в меню с номерами страниц
+        {
+            TextBlock tb = (TextBlock)sender;
+
+            switch (tb.Uid)  // определяем, куда конкретно было сделано нажатие
+            {
+                case "prev":
+                    pc.CurrentPage--;
+                    break;
+                case "next":
+                    pc.CurrentPage++;
+                    break;
+                default:
+                    pc.CurrentPage = Convert.ToInt32(tb.Text);
+                    break;
+            }
+            listProduct.ItemsSource = ProductsFilter.Skip(pc.CurrentPage * pc.CountPage - pc.CountPage).Take(pc.CountPage).ToList();  // оображение записей постранично с определенным количеством на каждой странице
+            // Skip(pc.CurrentPage* pc.CountPage - pc.CountPage) - сколько пропускаем записей
+            // Take(pc.CountPage) - сколько записей отображаем на странице
+        }
+
+        private void btn_Click(object sender, RoutedEventArgs e)
+        {
+            pc.CurrentPage = 1;
+
+            try
+            {
+                pc.CountPage = Convert.ToInt32(txtPageCount.Text); // если в текстовом поле есnь значение, присваиваем его свойству объекта, которое хранит количество записей на странице
+            }
+            catch
+            {
+                pc.CountPage = ProductsFilter.Count; // если в текстовом поле значения нет, присваиваем свойству объекта, которое хранит количество записей на странице количество элементов в списке
+            }
+            pc.Countlist = ProductsFilter.Count;  // присваиваем новое значение свойству, которое в объекте отвечает за общее количество записей
+            listProduct.ItemsSource = ProductsFilter.Skip(0).Take(pc.CountPage).ToList();  // отображаем первые записи в том количестве, которое равно CountPage
+
+        }
+
+        private void txtPrevStart_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            pc.CurrentPage = 1;
+            listProduct.ItemsSource = ProductsFilter.Skip(pc.CurrentPage * pc.CountPage - pc.CountPage).Take(pc.CountPage).ToList();
+        }
+
+        private void txtNextEnd_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            pc.CurrentPage = ProductsFilter.Count;
+            listProduct.ItemsSource = ProductsFilter.Skip(pc.CurrentPage * pc.CountPage - pc.CountPage).Take(pc.CountPage).ToList();
         }
     }
 }

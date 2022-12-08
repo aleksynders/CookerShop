@@ -65,6 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PageChange.cs" />
     <Compile Include="Pages\ChangePass.xaml.cs">
       <DependentUpon>ChangePass.xaml</DependentUpon>
     </Compile>

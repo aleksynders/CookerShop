@@ -63,6 +63,21 @@
                     <Label Content="По убыванию цены" FontFamily="Roboto" FontSize="12"/>
                 </ComboBox>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="15 0 0 0">
+                <StackPanel Orientation="Vertical">
+                    
+                    <TextBox Name="txtPageCount" TextChanged="txtPageCount_TextChanged" Width="50"/>
+                </StackPanel>
+                <TextBlock Name="txtPrevStart" Uid="prev" Text=" &#171; "  VerticalAlignment="Center" MouseDown="txtPrevStart_MouseDown" FontSize="14"/>
+                <TextBlock Name="txtPrev" Uid="prev" Text=" &lt; " MouseDown="GoPage_MouseDown" VerticalAlignment="Center" FontSize="14"/>
+                <TextBlock Name="txt1" Uid="1" Text="{Binding  Path = NPage[0]}" Visibility="{Binding Visible[0]}" FontWeight="{Binding Bold[0]}" MouseDown="GoPage_MouseDown" VerticalAlignment="Center"/>
+                <TextBlock Name="txt2" Uid="2" Text="{Binding  Path = NPage[1]}" Visibility="{Binding Visible[1]}" FontWeight="{Binding Bold[1]}" MouseDown="GoPage_MouseDown" VerticalAlignment="Center"/>
+                <TextBlock Name="txt3" Uid="3" Text="{Binding  Path = NPage[2]}" Visibility="{Binding Visible[2]}" FontWeight="{Binding Bold[2]}" MouseDown="GoPage_MouseDown" VerticalAlignment="Center"/>
+                <TextBlock Name="txt4" Uid="4" Text="{Binding  Path = NPage[3]}" Visibility="{Binding Visible[3]}" FontWeight="{Binding Bold[3]}" MouseDown="GoPage_MouseDown" VerticalAlignment="Center"/>
+                <TextBlock Name="txt5" Uid="5" Text="{Binding  Path = NPage[4]}" Visibility="{Binding Visible[4]}" FontWeight="{Binding Bold[4]}" MouseDown="GoPage_MouseDown" VerticalAlignment="Center"/>
+                <TextBlock Name="txtNext" Uid="next" Text=" &gt;" MouseDown="GoPage_MouseDown" VerticalAlignment="Center" FontSize="14"/>
+                <TextBlock Name="txtNextEnd" Uid="next" Text=" &#187;"  VerticalAlignment="Center" MouseDown="txtNextEnd_MouseDown" FontSize="14"/>
+            </StackPanel>
         </WrapPanel>
     </Grid>
 </Page>
