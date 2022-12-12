@@ -33,5 +33,10 @@ namespace wpf_project
         {
             FrameClass.MainFrame.Navigate(new RegPage());
         }
+
+        private void ads_Click(object sender, RoutedEventArgs e)
+        {
+            FrameClass.MainFrame.Navigate(new advertising());
+        }
     }
 }

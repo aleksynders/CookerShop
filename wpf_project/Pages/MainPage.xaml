@@ -19,9 +19,13 @@
         </StackPanel>
          <Button x:Name="register" Style="{DynamicResource MainButtonStyle}" Padding="5, 2, 5, 2" Content="Регистрация" Margin="0,0,20,0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Click="register_Click"/>
         <Button x:Name="autorizate" Style="{DynamicResource MainButtonStyle}" Padding="5, 2, 5, 2" Content="Авторизация" Margin="0,0,150,0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Click="autorizate_Click"/>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 10">
+            <Button x:Name="ads" Style="{DynamicResource AcceptButtonStyle}" Padding="5, 2, 5, 2" Content="Доставка" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Roboto" FontWeight="Bold" FontSize="16" Width="120" Height="30" Click="ads_Click"/>
+            <TextBlock HorizontalAlignment="Center" Text="* реклама" Foreground="#FF969696" FontFamily="Roboto" FontSize="10" ></TextBlock>
+        </StackPanel>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="\Resources\laptop.png" Height="100" Width="100"></Image>
             <TextBlock Height="auto" Width="500" Text="TechnicalHome – один из популярных и востребованных магазинов техники в России. На данный момент насчитывается более 473-х магазинов на территории Российской Федерации. Ежедневно мы осуществляем продажу более 2100 позиций техники" FontFamily="Roboto" FontSize="18" FontWeight="DemiBold" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
-            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>
